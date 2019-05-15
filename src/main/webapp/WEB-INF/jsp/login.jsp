@@ -11,6 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-<div>测试Git  Test</div>
+<div>测试Git</div>
 </body>
 </html>
