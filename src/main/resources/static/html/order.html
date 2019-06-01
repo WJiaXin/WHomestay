@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+ <link href="../bootstrap-4.3.1-dist/css/bootstrap.css" rel="stylesheet" type="text/css">
+      <link href="http://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/daterangepicker.css" rel="stylesheet">
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+       <link href="http://at.alicdn.com/t/font_1216890_jftcaadbzhp.css"  rel="stylesheet">
+     
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../bootstrap-4.3.1-dist/js/bootstrap.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/moment.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/daterangepicker.js"></script>
+<style>
+
+    .dropdown:hover .dropdown-menu {
+        display: block;
+        margin-top: 0;
+    }
+</style>
+<body class="bg-light">
+<div>
+	<div class="row">
+		<div class="col-md-12">
+       <nav class="navbar navbar-expand-lg navbar-light bg-white">
+				 
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="navbar-toggler-icon"></span>
+				</button> <a class="navbar-brand" href="login.html" style="margin-left:7.333333%; font-family:'Comic Sans MS', cursive; font-size:24px; "><i class="iconfont icon-jiudianminsu" style="font-size:3em; color:#F90;"></i> Homestay</a>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				
+					<ul class="navbar-nav ml-md-auto">
+                    <li class="nav-item dropdown">
+							 <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown"><img src="../img/test.jpg" height="35px"  width="35px" style="border-radius:20px;"/>  用户昵称</a>
+							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+								 <a class="dropdown-item" href="#">修改资料</a> 
+                                 <a class="dropdown-item" href="#">我的消息</a> 
+								<div class="dropdown-divider">
+								</div> 
+                                <div class="dropdown-header">我是房客</div>
+                                   <a class="dropdown-item" href="#">我的收藏</a> 
+                                      <a class="dropdown-item" href="#">我的订单</a>  
+                                      <div class="dropdown-divider">
+								</div> 
+                                      <div class="dropdown-header">我是房东</div>
+                                      <a class="dropdown-item" href="#">我的房源</a> 
+                                      <a class="dropdown-item" href="#">订单管理</a>
+                                       <a class="dropdown-item" href="#">我的点评</a> 
+                                       <a class="dropdown-item" href="#">收款方式</a> 
+							</div>
+						</li>
+						<li class="nav-item active">
+							 <a class="nav-link" href="#"> <button class="btn btn-default" style="background-color: #F60; color:#FFF;">发布房源</button></a>
+						</li>
+						
+					</ul>
+				</div>
+			</nav> 
+ <div class="row">
+<div class="col-md-2"></div>
+<div class="col-md-8 p-0">  
+<div class="d-flex flex-column border m-4 p-3 bg-white rounded"  style="font-size:12px; color:#999;">
+<div class="d-flex flex-row border-bottom">
+<div class="pb-2"><h4 style="color:#000;">待评价</h4></div>
+<div class="ml-auto mr-4"><button class="btn btn-default rounded pl-2 pr-2 pt-1 pb-1"  style="background-color:#FFF; color:#0CF; border:#0CF 1px solid; font-size:12px; font-weight:bold;">删除订单</button></div>
+</div>
+<div class="d-flex flex-column pt-3 pb-3 border-bottom">
+<div><h6 style="color:#000;">订单信息</h6></div>
+<div class="mt-3">订单总价<span style="color:#F60;font-size:18px; margin-left:16px;"> ￥200</span></div>
+<div class="mt-2">订单号<span style="color:#333;font-size:12px; margin-left:16px;"> 123456789</span></div>
+<div class="mt-2">下单时间<span style="color:#333;font-size:12px;  margin-left:16px;"> 2016-08-15</span></div>
+</div>
+<div class="d-flex flex-column pt-3 pb-3 border-bottom">
+<div><h6 style="color:#000;">民宿信息</h6></div>
+<div class="mt-3"><span style="color:#0CF;font-size:16px;"> 熊先生摄影民宿2-石路中式</span></div>
+<div class="mt-2">双流区学府西路常乐小区北三街38号</div>
+<div class="mt-2">民宿电话：<span style="color:#333;font-size:12px;  margin-left:8px;"> 123456798</span></div>
+</div>
+<div class="d-flex flex-column pt-3 pb-3 border-bottom">
+<div><h6 style="color:#000;">整套出租</h6></div>
+    <div class="mt-3"><span class="pr-1" style="color:#999;">卫浴:</span> 公共</div>
+    <div class="mt-2"><span class="pr-1" style="color:#999;">户型:</span> 1室1厅1卫1厨</div>
+    <div class="mt-2"><span class="pr-1" style="color:#999;">面积:</span> 20-30㎡</div>
+</div>
+<div class="d-flex flex-column pt-3 pb-3">
+<div><h6 style="color:#000;">预定信息</h6></div>
+<div class="mt-3">入住人<span style="color:#333;font-size:12px; margin-left:16px;"> 姓名</span></div>
+<div class="mt-2">联系手机<span style="color:#333;font-size:12px; margin-left:16px;"> 123456789</span></div>
+<div class="mt-2">预计到店<span style="color:#333;font-size:12px;  margin-left:16px;"> 4月19号14:00之前</span></div>
+</div>
+
+</div>  
+</div>   
+<div class="col-md-2"></div>  
+ <div class="col-md-12">  
+ <div class="jumbotron text-center bg-light" style="margin-bottom:0">
+  <p>底部内容</p>
+</div></div> 
+</div>    
+        
+</div>
+</div>
+</div>
+</body>
+</html>

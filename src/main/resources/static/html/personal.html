@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+ <link href="../bootstrap-4.3.1-dist/css/bootstrap.css" rel="stylesheet" type="text/css">
+      <link href="http://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/daterangepicker.css" rel="stylesheet">
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+       <link href="http://at.alicdn.com/t/font_1216890_jftcaadbzhp.css"  rel="stylesheet">
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../bootstrap-4.3.1-dist/js/bootstrap.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/moment.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/daterangepicker.js"></script>
+
+<style>
+.dropdown:hover .dropdown-menu {
+display: block;
+margin-top: 0;
+}
+#ulb  li + li:before {
+  padding: 0 5px;
+  color: #ccc;
+  content: ">";
+}
+.nav-pill .nav-link {
+  border-radius: 0.25rem;
+}
+
+.nav-pill .nav-link.active,
+.nav-pill .show > .nav-link {
+  color: #fff;
+  background-color:#F90;
+}
+.nav-pillh .nav-link {
+  border-radius: 0.25rem;
+}
+
+.nav-pillh .nav-link.active,
+.nav-pillh .show > .nav-link {
+  color:#F90;
+  border-bottom:#F90 2px solid;
+}
+a{
+  color:#999;
+  text-decoration:none;
+}
+a:hover{
+  color:#999;
+  text-decoration:none;
+}
+@media (min-width: 992px) {
+.list{
+	position:fixed;
+	top:0px;
+	background-color:#FFFFFF;
+	z-index:2000;
+	right:83.333333%;
+	left:8.333333%;
+}
+}
+</style>
+<body class="bg-light">
+<div>
+	<div class="row">
+		<div class="col-md-12">
+        
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+				 
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="navbar-toggler-icon"></span>
+				</button> <a class="navbar-brand" href="home.html" style="margin-left:7.333333%; font-family:'Comic Sans MS', cursive; font-size:24px; "><i class="iconfont icon-jiudianminsu" style="font-size:3em; color:#F90;"></i> Homestay</a>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				
+					<ul class="navbar-nav ml-md-auto">
+                    <li class="nav-item dropdown">
+							 <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown"><img src="../img/test.jpg" height="35px"  width="35px" style="border-radius:20px;"/>  用户昵称</a>
+							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+								 <a class="dropdown-item" href="#">修改资料</a> 
+                                 <a class="dropdown-item" href="#">我的消息</a> 
+								<div class="dropdown-divider">
+								</div> 
+                                <div class="dropdown-header">我是房客</div>
+                                   <a class="dropdown-item" href="#">我的收藏</a> 
+                                      <a class="dropdown-item" href="#">我的订单</a>  
+                                      <div class="dropdown-divider">
+								</div> 
+                                      <div class="dropdown-header">我是房东</div>
+                                      <a class="dropdown-item" href="#">我的房源</a> 
+                                      <a class="dropdown-item" href="#">订单管理</a>
+                                       <a class="dropdown-item" href="#">我的点评</a> 
+                                       <a class="dropdown-item" href="#">收款方式</a> 
+							</div>
+						</li>
+						<li class="nav-item active">
+							 <a class="nav-link" href="#"> <button class="btn btn-default" style="background-color: #F60; color:#FFF;">发布房源</button></a>
+						</li>
+						
+					</ul>
+				</div>
+			</nav>
+                 
+<div class="row">
+<div class="col-md-1"></div>
+<div class="col-md-10 p-0">
+<ol id="ulb" class="breadcrumb bg-light pl-0 " style="font-size:14px;" >
+							<li class="breadcrumb-item">
+								<a href="#">首页</a>
+							</li>
+							<li class="breadcrumb-item active">
+								订单
+							</li>
+						</ol>
+</div>
+<div class="col-md-1"></div>
+
+
+<div class="col-md-1">
+</div>
+<div class="col-md-1 p-0 bg-light d-flex flex-column">
+ <div id="list">
+ <ul class="nav nav-pill flex-column rounded bg-white" role="tablist">
+ 
+    <div class="p-2 align-self-auto border-bottom rounded-top" style="color:#FFF; font-size:14px; font-weight:bolder; background-color:#F60;">管理中心</div>
+   
+   <li class="nav-item">
+      <a class="nav-link active rounded-0" data-toggle="pill" href="#ziliao"><i class="iconfont icon-gerenziliao"></i> 个人资料</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link rounded-0" data-toggle="pill" href="#xiaoxi"><i class="iconfont icon-xiaoxi"></i> 我的消息</a>
+    </li>
+ <div class="p-2 align-self-auto  border-top" style="color:#333; font-size:14px; font-weight:bolder;">房东中心</div>
+    <li class="nav-item">
+      <a class="nav-link rounded-0" data-toggle="pill" href="#dingdan1"><i class="iconfont icon-icon-"></i> 订单管理</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link rounded-0" data-toggle="pill" href="#fangyuan"><i class="iconfont icon-fangyuan"></i> 我的房源</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link rounded-0" data-toggle="pill" href="#dianping"><i class="iconfont icon-dianping"></i> 我的点评</a>
+    </li>
+  <li class="nav-item">
+      <a class="nav-link rounded-0" data-toggle="pill" href="#shoukuan"><i class="iconfont icon-shoukuan"></i> 收款方式</a>
+    </li>
+  <div class="p-2 align-self-auto border-top" style="color:#333; font-size:14px;font-weight:bolder;">房客中心</div>
+
+    <li class="nav-item">
+      <a class="nav-link rounded-0" data-toggle="pill" href="#shoucang"><i class="iconfont icon-shoucang"></i> 我的收藏</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link rounded-0" data-toggle="pill" href="#dingdan2"><i class="iconfont icon-icon-"></i> 我的订单</a>
+    </li>
+  </ul>
+  </div>
+</div>
+<div class="col-md-9 pl-3 d-flex">
+  <div class="tab-content bg-white rounded flex-fill">
+    <div id="ziliao" class="container tab-pane active h-100">
+     <div class="d-flex flex-column">
+     
+     <div class="d-flex flex-column p-3 m-3 border rounded">
+     <div class="pb-3" style="color:#F60; font-weight:bold; border-bottom:solid 1px #CCCCCC;">基本信息</div>
+     <div class="p-4"><span style="color:#999;" class="pr-4">用户名：</span> 昵称 <a class="pl-4" style="color:#F96;">修改</a></div>
+     <div class="p-4"><span style="color:#999;" class="pr-4">手机号：</span> 17760486523   <a class="pl-4" style="color:#F96;">修改</a></div>
+     <div class="p-4"><span style="color:#999;" class="pr-4">头像：</span><img src="../img/test.jpg" height="50px"  width="50px" class="rounded-circle"/><a class="pl-4" style="color:#F96;">更换</a></div>
+     </div>
+     
+     <div class="d-flex flex-column p-3 m-3 border rounded">
+      <div class="pb-3" style="color:#F60; font-weight:bold; border-bottom:solid 1px #CCCCCC;">身份信息<span style="color:#CCC; margin-left:16px; font-weight:normal;">仅用于必要的安全环节，其他情况下将为您严格保密</span></div>
+     <div class="p-4"><span style="color:#999;" class="pr-4">真实姓名：</span> 真昵称</div>
+     <div class="p-4"><span style="color:#999;" class="pr-4">身份证号：</span> 513701********4219 </div>
+     </div>
+     
+     <div class="d-flex flex-column p-3 m-3 border rounded">
+      <div class="pb-3" style="color:#F60; font-weight:bold; border-bottom:solid 1px #CCCCCC;">社交信息</div>
+     <div class="p-4"><span style="color:#999;" class="pr-4">性别：</span> 男 <a class="pl-4" style="color:#F96;">修改</a></div>
+     <div class="p-4"><span style="color:#999;" class="pr-4">年龄：</span> 21   <a class="pl-4" style="color:#F96;">修改</a></div>
+     <div class="p-4"><span style="color:#999;" class="pr-4">所在地：</span>成都</div>
+     </div>
+     
+     </div>
+    </div>
+    
+    <div id="xiaoxi" class="container tab-pane fade h-100"><br>
+      <h3>消息</h3>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+    
+    <div id="dingdan1" class="container tab-pane fade flex-column h-100" >
+    
+    <div class="border-bottom p-0">
+    <ul class="nav nav-pillh" role="tablist">
+    <li class="nav-item rounded-0">
+      <a class="nav-link active rounded-0" data-toggle="pill" href="#quanbu">全部</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link rounded-0" data-toggle="pill" href="#druzhu">待入住</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link rounded-0" data-toggle="pill" href="#ruzhuz">入住中</a>
+    </li>
+     <li class="nav-item">
+      <a class="nav-link rounded-0" data-toggle="pill" href="#wancheng">已完成</a>
+    </li>
+     <li class="nav-item">
+      <a class="nav-link rounded-0" data-toggle="pill" href="#quxiao">已取消</a>
+    </li>
+     <li class="nav-item">
+      <a class="nav-link rounded-0" data-toggle="pill" href="#jujue">已拒绝</a>
+    </li>
+  </ul>
+     </div>
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div id="quanbu" class="container tab-pane active h-100 p-0">
+     <div class="d-flex flex-column">
+     
+   <div class="media bg-white mt-3 mb-3 p-3 border rounded">
+  <img src="../img/room3.jpg" alt="John Doe" class="mr-3 mt-3 rounded" style="width:130px; height:90px;">
+  <div class="media-body bg-white pt-3 d-flex flex-column-reverse" >
+   <div class="mt-2" style="font-size:12px;">
+   2019-5-19 至 2019-5-20
+   </div>
+   <div class="d-flex flex-row mt-2" style="font-size:14px; color:#666;">
+   <div class="pl-0 pr-3 pt-2 bg-white">单间</div>
+    <div class="pl-3 pr-3 ml-auto">房价：￥200</div>
+    <div class="pl-3 pr-5 ml-auto">待入住</div>
+    
+    </div>
+    <div>
+    <h5>熊先生摄影民宿2-石路中</h5>
+    </div>
+  </div>
+</div>
+ <div class="media bg-white mt-3 mb-3 p-3 border rounded">
+  <img src="../img/room3.jpg" alt="John Doe" class="mr-3 mt-3 rounded" style="width:130px; height:90px;">
+  <div class="media-body bg-white pt-3 d-flex flex-column-reverse" >
+   <div class="mt-2" style="font-size:12px;">
+   2019-5-19 至 2019-5-20
+   </div>
+   <div class="d-flex flex-row mt-2" style="font-size:14px; color:#666;">
+   <div class="pl-0 pr-3 pt-2 bg-white">单间</div>
+    <div class="pl-3 pr-3 ml-auto">房价：￥200</div>
+    <div class="pl-3 pr-5 ml-auto">入住中</div>
+    
+    </div>
+    <div>
+   <h5>熊先生摄影民宿2-石路中</h5>
+    </div>
+  </div>
+</div>
+ <div class="media bg-white mt-3 mb-3 p-3 border rounded">
+  <img src="../img/room3.jpg" alt="John Doe" class="mr-3 mt-3 rounded" style="width:130px; height:90px;">
+  <div class="media-body bg-white pt-3 d-flex flex-column-reverse" >
+   <div class="mt-2" style="font-size:12px;">
+   2019-5-19 至 2019-5-20
+   </div>
+   <div class="d-flex flex-row mt-2" style="font-size:14px; color:#666;">
+   <div class="pl-0 pr-3 pt-2 bg-white">单间</div>
+    <div class="pl-3 pr-3 ml-auto">房价：￥200</div>
+    <div class="pl-3 pr-5 ml-auto">已完成</div>
+    
+    </div>
+    <div>
+   <h5>熊先生摄影民宿2-石路中</h5>
+    </div>
+  </div>
+</div>
+ <div class="media bg-white mt-3 mb-3 p-3 border rounded">
+  <img src="../img/room3.jpg" alt="John Doe" class="mr-3 mt-3 rounded" style="width:130px; height:90px;">
+  <div class="media-body bg-white pt-3 d-flex flex-column-reverse" >
+   <div class="mt-2" style="font-size:12px;">
+   2019-5-19 至 2019-5-20
+   </div>
+   <div class="d-flex flex-row mt-2" style="font-size:14px; color:#666;">
+   <div class="pl-0 pr-3 pt-2 bg-white">单间</div>
+    <div class="pl-3 pr-3 ml-auto">房价：￥200</div>
+    <div class="pl-3 pr-5 ml-auto">已取消</div>
+    
+    </div>
+    <div>
+    <h5>熊先生摄影民宿2-石路中</h5>
+    </div>
+  </div>
+</div>
+ <div class="media bg-white mt-3 mb-3 p-3 border rounded">
+  <img src="../img/room3.jpg" alt="John Doe" class="mr-3 mt-3 rounded" style="width:130px; height:90px;">
+  <div class="media-body bg-white pt-3 d-flex flex-column-reverse" >
+   <div class="mt-2" style="font-size:12px;">
+   2019-5-19 至 2019-5-20
+   </div>
+   <div class="d-flex flex-row mt-2" style="font-size:14px; color:#666;">
+   <div class="pl-0 pr-3 pt-2 bg-white">单间</div>
+    <div class="pl-3 pr-3 ml-auto">房价：￥200</div>
+    <div class="pl-3 pr-5 ml-auto">已拒绝</div>
+    
+    </div>
+    <div>
+   <h5>熊先生摄影民宿2-石路中</h5>
+    </div>
+  </div>
+</div>
+<div class="bg-white m-4 align-self-end" style="font-size:16px;">
+				<nav>
+				<ul class="pagination">
+					<li class="page-item">
+						<a class="page-link" href="#"><</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">1</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">2</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">3</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">4</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">5</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">></a>
+					</li>
+				</ul>
+			</nav>
+			</div>
+</div>
+    </div>
+    <div id="druzhu" class="container tab-pane fade h-100"><!--待入住 -->
+     <div class="d-flex flex-column"> 
+     
+   <div class="media bg-white mt-3 mb-3 p-3 border rounded"><!--订单 -->
+  <img src="../img/room3.jpg" alt="John Doe" class="mr-3 mt-3 rounded" style="width:130px; height:90px;">
+  <div class="media-body bg-white pt-3 d-flex flex-column-reverse" >
+   <div class="mt-2" style="font-size:12px;">
+   2019-5-19 至 2019-5-20
+   </div>
+   <div class="d-flex flex-row mt-2" style="font-size:14px; color:#666;">
+   <div class="pl-0 pr-3 pt-2 bg-white">单间</div>
+    <div class="pl-3 pr-3 ml-auto">房价：￥200</div>
+    <div class="pl-3 pr-5 ml-auto">待入住</div>
+    
+    </div>
+    <div>
+   <h5>熊先生摄影民宿2-石路中</h5>
+    </div>
+  </div>
+</div>                                             <!--订单end -->
+<div class="bg-white m-4 align-self-end" style="font-size:16px;">
+				<nav>
+				<ul class="pagination">
+					<li class="page-item">
+						<a class="page-link" href="#"><</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">1</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">2</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">3</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">4</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">5</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">></a>
+					</li>
+				</ul>
+			</nav>
+			</div>
+</div>
+    </div>
+    
+    <div id="ruzhuz" class="container tab-pane fade h-100"><!--入住中 -->
+      <div class="d-flex flex-column"> 
+      
+   <div class="media bg-white mt-3 mb-3 p-3 border rounded"><!--订单 -->
+  <img src="../img/room3.jpg" alt="John Doe" class="mr-3 mt-3 rounded" style="width:130px; height:90px;">
+  <div class="media-body bg-white pt-3 d-flex flex-column-reverse" >
+   <div class="mt-2" style="font-size:12px;">
+   2019-5-19 至 2019-5-20
+   </div>
+   <div class="d-flex flex-row mt-2" style="font-size:14px; color:#666;">
+   <div class="pl-0 pr-3 pt-2 bg-white">单间</div>
+    <div class="pl-3 pr-3 ml-auto">房价：￥200</div>
+    <div class="pl-3 pr-5 ml-auto">入住中</div>
+    
+    </div>
+    <div>
+    <h5>熊先生摄影民宿2-石路中</h5>
+    </div>
+  </div>
+</div>                                               <!--订单end -->
+<div class="bg-white m-4 align-self-end" style="font-size:16px;">
+				<nav>
+				<ul class="pagination">
+					<li class="page-item">
+						<a class="page-link" href="#"><</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">1</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">2</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">3</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">4</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">5</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">></a>
+					</li>
+				</ul>
+			</nav>
+			</div>
+</div>
+    </div>
+    
+     <div id="wancheng" class="container tab-pane fade h-100"><!--已完成 -->
+       <div class="d-flex flex-column"> 
+       
+   <div class="media bg-white mt-3 mb-3 p-3 border rounded"><!--订单 -->
+  <img src="../img/room3.jpg" alt="John Doe" class="mr-3 mt-3 rounded" style="width:130px; height:90px;">
+  <div class="media-body bg-white pt-3 d-flex flex-column-reverse" >
+   <div class="mt-2" style="font-size:12px;">
+   2019-5-19 至 2019-5-20
+   </div>
+   <div class="d-flex flex-row mt-2" style="font-size:14px; color:#666;">
+   <div class="pl-0 pr-3 pt-2 bg-white">单间</div>
+    <div class="pl-3 pr-3 ml-auto">房价：￥200</div>
+    <div class="pl-3 pr-5 ml-auto">已完成</div>
+    </div>
+    <div>
+   <h5>熊先生摄影民宿2-石路中</h5>
+    </div>
+  </div>
+</div>                                              <!--订单end -->
+
+<div class="bg-white m-4 align-self-end" style="font-size:16px;">
+				<nav>
+				<ul class="pagination">
+					<li class="page-item">
+						<a class="page-link" href="#"><</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">1</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">2</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">3</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">4</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">5</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">></a>
+					</li>
+				</ul>
+			</nav>
+			</div>
+</div>
+    </div>
+    
+    <div id="quxiao" class="container tab-pane fade h-100"><!--已取消 -->
+       <div class="d-flex flex-column"> 
+       
+   <div class="media bg-white mt-3 mb-3 p-3 border rounded"><!--订单 -->
+  <img src="../img/room3.jpg" alt="John Doe" class="mr-3 mt-3 rounded" style="width:130px; height:90px;">
+  <div class="media-body bg-white pt-3 d-flex flex-column-reverse" >
+   <div class="mt-2" style="font-size:12px;">
+   2019-5-19 至 2019-5-20
+   </div>
+   <div class="d-flex flex-row mt-2" style="font-size:14px; color:#666;">
+   <div class="pl-0 pr-3 pt-2 bg-white">单间</div>
+    <div class="pl-3 pr-3 ml-auto">房价：￥200</div>
+    <div class="pl-3 pr-5 ml-auto">已取消</div>
+    
+    </div>
+    <div>
+   <h5>熊先生摄影民宿2-石路中</h5>
+    </div>
+  </div>
+</div><!--订单end -->
+<div class="bg-white m-4 align-self-end" style="font-size:16px;">
+				<nav>
+				<ul class="pagination">
+					<li class="page-item">
+						<a class="page-link" href="#"><</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">1</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">2</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">3</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">4</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">5</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">></a>
+					</li>
+				</ul>
+			</nav>
+			</div>
+</div>
+    </div>
+    
+    <div id="jujue" class="container tab-pane fade h-100"><!--已拒绝 -->
+       <div class="d-flex flex-column"> 
+       
+   <div class="media bg-white mt-3 mb-3 p-3 border rounded"><!--订单 -->
+  <img src="../img/room3.jpg" alt="John Doe" class="mr-3 mt-3 rounded" style="width:130px; height:90px;">
+  <div class="media-body bg-white pt-3 d-flex flex-column-reverse" >
+   <div class="mt-2" style="font-size:12px;">
+   2019-5-19 至 2019-5-20
+   </div>
+   <div class="d-flex flex-row mt-2" style="font-size:14px; color:#666;">
+   <div class="pl-0 pr-3 pt-2 bg-white">单间</div>
+    <div class="pl-3 pr-3 ml-auto">房价：￥200</div>
+    <div class="pl-3 pr-5 ml-auto">已拒绝</div>
+    
+    </div>
+    <div>
+    <h5>熊先生摄影民宿2-石路中</h5>
+    </div>
+  </div>
+</div><!--订单end -->
+<div class="bg-white m-4 align-self-end" style="font-size:16px;">
+				<nav>
+				<ul class="pagination">
+					<li class="page-item">
+						<a class="page-link" href="#"><</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">1</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">2</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">3</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">4</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">5</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">></a>
+					</li>
+				</ul>
+			</nav>
+			</div>
+</div>
+  </div>
+  </div>
+  
+    </div>
+    
+     <div id="fangyuan" class="container tab-pane fade h-100">
+      <h3>房源</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    </div>
+    
+    <div id="dianping" class="container tab-pane fade h-100">
+      <h3>点评</h3>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+    
+    <div id="shoukuan" class="container tab-pane fade h-100"><br>
+      <h3>收款</h3>
+      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+    </div>
+    
+     <div id="shoucang" class="container tab-pane fade h-100"><br>
+      <h3>我的收藏</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    </div>
+    
+   <div id="dingdan2" class="container tab-pane fade flex-column h-100" >
+    
+    <div class="border-bottom p-0">
+    <ul class="nav nav-pillh" role="tablist">
+    <li class="nav-item rounded-0">
+      <a class="nav-link active rounded-0" data-toggle="pill" href="#quanbu2">全部</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link rounded-0" data-toggle="pill" href="#xiadan">已下单</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link rounded-0" data-toggle="pill" href="#pingjia">待评价</a>
+    </li>
+     <li class="nav-item">
+      <a class="nav-link rounded-0" data-toggle="pill" href="#shouhou">退款/售后</a>
+    </li>
+  </ul>
+     </div>
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div id="quanbu2" class="container tab-pane active h-100 p-0"><br>
+     <div class="d-flex flex-column">
+     
+   <div class="media bg-white mt-3 mb-3 p-3 border rounded">
+  <img src="../img/room3.jpg" alt="John Doe" class="mr-3 mt-3 rounded" style="width:130px; height:90px;">
+  <div class="media-body bg-white pt-3 d-flex flex-column-reverse" >
+   <div class="mt-2" style="font-size:12px;">
+   2019-5-19 至 2019-5-20
+   </div>
+   <div class="d-flex flex-row mt-2" style="font-size:14px; color:#666;">
+   <div class="pl-0 pr-3 pt-2 bg-white">单间</div>
+    <div class="pl-3 pr-3 ml-auto">房价：￥200</div>
+    <div class="pl-3 pr-5 ml-auto">已下单</div>
+    
+    </div>
+    <div>
+    <h5>熊先生摄影民宿2-石路中</h5>
+    </div>
+  </div>
+</div>
+ <div class="media bg-white mt-3 mb-3 p-3 border rounded">
+  <img src="../img/room3.jpg" alt="John Doe" class="mr-3 mt-3 rounded" style="width:130px; height:90px;">
+  <div class="media-body bg-white pt-3 d-flex flex-column-reverse" >
+   <div class="mt-2" style="font-size:12px;">
+   2019-5-19 至 2019-5-20
+   </div>
+   <div class="d-flex flex-row mt-2" style="font-size:14px; color:#666;">
+   <div class="pl-0 pr-3 pt-2 bg-white">单间</div>
+    <div class="pl-3 pr-3 ml-auto">房价：￥200</div>
+    <div class="pl-3 pr-5 ml-auto"><button class="btn btn-default rounded pl-2 pr-2 pt-1 pb-1"  style="background-color:#FFF; color:#39F; border:#39F 1px solid; font-size:12px;">待评价</button></div>
+    
+    </div>
+    <div>
+    <h5>熊先生摄影民宿2-石路中</h5>
+    </div>
+  </div>
+</div>
+ <div class="media bg-white mt-3 mb-3 p-3 border rounded">
+  <img src="../img/room3.jpg" alt="John Doe" class="mr-3 mt-3 rounded" style="width:130px; height:90px;">
+  <div class="media-body bg-white pt-3 d-flex flex-column-reverse" >
+   <div class="mt-2" style="font-size:12px;">
+   2019-5-19 至 2019-5-20
+   </div>
+   <div class="d-flex flex-row mt-2" style="font-size:14px; color:#666;">
+   <div class="pl-0 pr-3 pt-2 bg-white">单间</div>
+    <div class="pl-3 pr-3 ml-auto">房价：￥200</div>
+    <div class="pl-3 pr-5 ml-auto">已消费</div>
+    
+    </div>
+    <div>
+    <h5>熊先生摄影民宿2-石路中</h5>
+    </div>
+  </div>
+</div>
+ <div class="media bg-white mt-3 mb-3 p-3 border rounded">
+  <img src="../img/room3.jpg" alt="John Doe" class="mr-3 mt-3 rounded" style="width:130px; height:90px;">
+  <div class="media-body bg-white pt-3 d-flex flex-column-reverse" >
+   <div class="mt-2" style="font-size:12px;">
+   2019-5-19 至 2019-5-20
+   </div>
+   <div class="d-flex flex-row mt-2" style="font-size:14px; color:#666;">
+   <div class="pl-0 pr-3 pt-2 bg-white">单间</div>
+    <div class="pl-3 pr-3 ml-auto">房价：￥200</div>
+    <div class="pl-3 pr-5 ml-auto">已取消</div>
+    
+    </div>
+    <div>
+    <h5>熊先生摄影民宿2-石路中</h5>
+    </div>
+  </div>
+</div>
+ <div class="media bg-white mt-3 mb-3 p-3 border rounded">
+  <img src="../img/room3.jpg" alt="John Doe" class="mr-3 mt-3 rounded" style="width:130px; height:90px;">
+  <div class="media-body bg-white pt-3 d-flex flex-column-reverse" >
+   <div class="mt-2" style="font-size:12px;">
+   2019-5-19 至 2019-5-20
+   </div>
+   <div class="d-flex flex-row mt-2" style="font-size:14px; color:#666;">
+   <div class="pl-0 pr-3 pt-2 bg-white">单间</div>
+    <div class="pl-3 pr-3 ml-auto">房价：￥200</div>
+    <div class="pl-3 pr-5 ml-auto">已拒绝</div>
+    
+    </div>
+    <div>
+    <h5>熊先生摄影民宿2-石路中</h5>
+    </div>
+  </div>
+</div>
+
+<div class="bg-white m-4 align-self-end" style="font-size:16px;">
+				<nav>
+				<ul class="pagination">
+					<li class="page-item">
+						<a class="page-link" href="#"><</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">1</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">2</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">3</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">4</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">5</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">></a>
+					</li>
+				</ul>
+			</nav>
+			</div>
+</div>
+    </div>
+    
+    
+    <div id="xiadan" class="container tab-pane fade h-100"><!--已下单 -->
+     <div class="d-flex flex-column"> 
+     
+   <div class="media bg-white mt-3 mb-3 p-3 border rounded"><!--订单 -->
+  <img src="../img/room3.jpg" alt="John Doe" class="mr-3 mt-3 rounded" style="width:130px; height:90px;">
+  <div class="media-body bg-white pt-3 d-flex flex-column-reverse" >
+   <div class="mt-2" style="font-size:12px;">
+   2019-5-19 至 2019-5-20
+   </div>
+   <div class="d-flex flex-row mt-2" style="font-size:14px; color:#666;">
+   <div class="pl-0 pr-3 pt-2 bg-white">单间</div>
+    <div class="pl-3 pr-3 ml-auto">房价：￥200</div>
+    <div class="pl-3 pr-5 ml-auto">已下单</div>
+    
+    </div>
+    <div>
+   <h5>熊先生摄影民宿2-石路中</h5>
+    </div>
+  </div>
+</div>                                             <!--订单end -->
+
+<div class="bg-white m-4 align-self-end" style="font-size:16px;">
+				<nav>
+				<ul class="pagination">
+					<li class="page-item">
+						<a class="page-link" href="#"><</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">1</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">2</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">3</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">4</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">5</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">></a>
+					</li>
+				</ul>
+			</nav>
+			</div>
+</div>
+    </div>
+    
+    <div id="pingjia" class="container tab-pane fade h-100"><!--待评价 -->
+     <div class="d-flex flex-column"> 
+     
+   <div class="media bg-white mt-3 mb-3 p-3 border rounded"><!--订单 -->
+  <img src="../img/room3.jpg" alt="John Doe" class="mr-3 mt-3 rounded" style="width:130px; height:90px;">
+  <div class="media-body bg-white pt-3 d-flex flex-column-reverse" >
+   <div class="mt-2" style="font-size:12px;">
+   2019-5-19 至 2019-5-20
+   </div>
+   <div class="d-flex flex-row mt-2" style="font-size:14px; color:#666;">
+   <div class="pl-0 pr-3 pt-2 bg-white">单间</div>
+    <div class="pl-3 pr-3 ml-auto">房价：￥200</div>
+    <div class="pl-3 pr-5 ml-auto"><button class="btn btn-default rounded pl-2 pr-2 pt-1 pb-1"  style="background-color:#FFF; color:#39F; border:#39F 1px solid; font-size:12px;">待评价</button></div>
+    
+    </div>
+    <div>
+    <h5>熊先生摄影民宿2-石路中</h5>
+    </div>
+  </div>
+</div>                                             <!--订单end -->
+<div class="bg-white m-4 align-self-end" style="font-size:16px;">
+				<nav>
+				<ul class="pagination">
+					<li class="page-item">
+						<a class="page-link" href="#"><</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">1</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">2</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">3</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">4</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">5</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">></a>
+					</li>
+				</ul>
+			</nav>
+			</div>
+</div>
+
+    </div>
+    
+    <div id="shouhou" class="container tab-pane fade h-100"><!--售后 -->
+     <div class="d-flex flex-column"> 
+     
+   <div class="media bg-white mt-3 mb-3 p-3 border rounded"><!--订单 -->
+  <img src="../img/room3.jpg" alt="John Doe" class="mr-3 mt-3 rounded" style="width:130px; height:90px;">
+  <div class="media-body bg-white pt-3 d-flex flex-column-reverse" >
+   <div class="mt-2" style="font-size:12px;">
+   2019-5-19 至 2019-5-20
+   </div>
+   <div class="d-flex flex-row mt-2" style="font-size:14px; color:#666;">
+   <div class="pl-0 pr-3 pt-2 bg-white">单间</div>
+    <div class="pl-3 pr-3 ml-auto">房价：￥200</div>
+    <div class="pl-3 pr-5 ml-auto">已取消</div>
+    
+    </div>
+    <div>
+   <h5>熊先生摄影民宿2-石路中</h5>
+    </div>
+  </div>
+</div>                                             <!--订单end -->
+
+    
+    <div class="media bg-white mt-3 mb-3 p-3 border rounded"><!--订单 -->
+  <img src="../img/room3.jpg" alt="John Doe" class="mr-3 mt-3 rounded" style="width:130px; height:90px;">
+  <div class="media-body bg-white pt-3 d-flex flex-column-reverse" >
+   <div class="mt-2" style="font-size:12px;">
+   2019-5-19 至 2019-5-20
+   </div>
+   <div class="d-flex flex-row mt-2" style="font-size:14px; color:#666;">
+   <div class="pl-0 pr-3 pt-2 bg-white">单间</div>
+    <div class="pl-3 pr-3 ml-auto">房价：￥200</div>
+    <div class="pl-3 pr-5 ml-auto">已拒绝</div>
+    
+    </div>
+    <div>
+    <h5>熊先生摄影民宿2-石路中</h5>
+    </div>
+  </div>
+</div>                                             <!--订单end -->
+<div class="m-4 align-self-end" style="font-size:16px;">
+				<nav>
+				<ul class="pagination">
+					<li class="page-item">
+						<a class="page-link" href="#"><</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">1</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">2</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">3</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">4</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">5</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="#">></a>
+					</li>
+				</ul>
+			</nav>
+			</div>
+</div>
+    </div>
+
+  </div>
+</div>
+<div class="col-md-1"></div>
+
+</div>
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+</body>
+<script src="../js/personal.js"></script>
+</html>
