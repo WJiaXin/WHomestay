@@ -79,5 +79,8 @@ $(document).ready(function() {
     init();
 });
 $('#cord').click(function () {
-    $('#cord').attr('src',"/user/createImg?time="+ new Date().getTime());
+    $('#cord').attr('src', "/user/createImg?time=" + new Date().getTime());
+})
+$('#cordZ').click(function () {
+    $('#cordZ').attr('src',"/user/createImg?time="+ new Date().getTime());
 })

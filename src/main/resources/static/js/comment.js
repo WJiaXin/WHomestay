@@ -14,7 +14,6 @@ $("#shangchuan").click(function () {
 function shangchuan(){
     var formData = new FormData();
     formData.append("file",$('#file')[0].files[0]);
-    alert(formData.get("file"));
     $.ajax({
         type: 'post',
         url:"/img/pimg",

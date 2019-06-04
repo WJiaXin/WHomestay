@@ -31,7 +31,7 @@ public class UserController {
         //调用dao层
         User user = userService.selectUserByName("test");
         session.setAttribute("user",user);
-        return "home";//返回的是Json数据，因为RestController注解中有@ResponseBody的作用
+        return "redirect:/html/homestay.html";//返回的是Json数据，因为RestController注解中有@ResponseBody的作用
     }
     @RequestMapping(value="/createImg")
     public void createImg(HttpServletResponse response, HttpServletRequest  request) throws IOException {

@@ -43,16 +43,16 @@ $('#select div').bind("click",function(){
 });
 
 $(window).scroll(function(){
-    var top = $(document).scrollTop()
+    var top = $(document).scrollTop();
 
-    if(seltop<$(document).scrollTop()){
+    if(seltop<top){
         $('#select').addClass("select");
         $('#room').addClass("room");
-        if(ctop<$(document).scrollTop()){
+        if(ctop<top){
             $('#select>div:eq(2)').attr('style','border-bottom:#69F 2px solid;color:#69F;');
             $('#select>div:gt(2)').attr('style','border-bottom:#FFF 2px solid;');
             $('#select>div:lt(2)').attr('style','border-bottom:#FFF 2px solid;');
-        }else if(htop<$(document).scrollTop()){
+        }else if(htop<top){
             $('#select>div:eq(1)').attr('style','border-bottom:#69F 2px solid;color:#69F;');
             $('#select>div:gt(1)').attr('style','border-bottom:#FFF 2px solid;');
             $('#select>div:lt(1)').attr('style','border-bottom:#FFF 2px solid;');

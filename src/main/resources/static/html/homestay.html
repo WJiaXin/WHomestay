@@ -52,7 +52,7 @@ margin-top: 0;
 <div>
 	<div class="row">
 		<div class="col-md-12">
-            <nav class="navbar navbar-expand-lg navbar-light bg-white"  style="background-color:#FFF;">
+            <nav class="navbar navbar-expand-lg navbar-light bg-white">
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="navbar-toggler-icon"></span>
@@ -153,7 +153,6 @@ margin-top: 0;
 								房东昵称
 			  </h5>
                          <h6 style="color:#0C0; font-size:14px;">实名认证</h6>
-                         
                          <h5 class="pt-2 " style="color:#F99;"><i class="fa fa-comments"></i> 联系房东</h5>
             </div>
             </div>
@@ -319,8 +318,7 @@ margin-top: 0;
             <h3 class="mt-3 mb-2" id="homestay">民宿信息</h3>
             
             <div class="border bg-white d-flex flex-row rounded">
-            <div style="width:60%;">
-  <img src="../img/map.png" alt="John Doe" width="100%" height="100%">
+            <div style="width:60%;" id="container">
   </div>
   
   <div class="d-flex flex-column-reverse" style="font-size:14px; color:#666; width:40%">
@@ -555,4 +553,29 @@ margin-top: 0;
 
 </body>
 <script src="../js/homestay.js"></script>
+<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.14&key=9839aaba1926a947266476327971a8ea&plugin=AMap.AdvancedInfoWindow"></script>
+<script src="//webapi.amap.com/ui/1.0/main.js"></script>
+<script>
+ var map = new AMap.Map('container', {
+        resizeEnable: true, //是否监控地图容器尺寸变化
+        zoom:16, //初始化地图层级
+       center:[103.985289,30.581767]
+    });
+ var marker = new AMap.Marker({
+        position:[103.985289,30.581767]//位置
+    })
+   marker.setMap(map);
+//鼠标点击marker弹出自定义的信息窗体
+AMap.event.addListener(marker, 'click', function () {
+    infoWindow.open(map, marker.getPosition());
+});
+//实例化信息窗体
+var content = [];
+content.push("<span style='font-weight: bold;'>地址：</span>成都信息工程大学航空港校区体育公园   <a href='https://www.amap.com/?30.581767,103.985289' style='margin-left: 16px;'>>>>导航</a>");
+var infoWindow = new AMap.InfoWindow({
+    content:  content.join("<br/>"),
+    offset: new AMap.Pixel(16, -45)
+});
+
+</script>
 </html>
