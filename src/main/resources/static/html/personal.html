@@ -49,6 +49,7 @@ a{
 a:hover{
   color:#999;
   text-decoration:none;
+    cursor: pointer;
 }
 @media (min-width: 992px) {
 .list{
@@ -161,10 +162,78 @@ a:hover{
      
      <div class="d-flex flex-column p-3 m-3 border rounded">
      <div class="pb-3" style="color:#F60; font-weight:bold; border-bottom:solid 1px #CCCCCC;">基本信息</div>
-     <div class="p-4"><span style="color:#999;" class="pr-4">用户名：</span> 昵称 <a class="pl-4" style="color:#F96;">修改</a></div>
-     <div class="p-4"><span style="color:#999;" class="pr-4">手机号：</span> 17760486523   <a class="pl-4" style="color:#F96;">修改</a></div>
-     <div class="p-4"><span style="color:#999;" class="pr-4">头像：</span><img src="../img/test.jpg" height="50px"  width="50px" class="rounded-circle"/><a class="pl-4" style="color:#F96;">更换</a></div>
+     <div class="p-4"><span style="color:#999;" class="pr-4">用户名：</span> 昵称 <a class="pl-4" style="color:#F96;" data-toggle="modal" data-target="#myModal">修改</a></div>
+
+         <div class="modal fade" id="myModal">
+             <div class="modal-dialog">
+                 <div class="modal-content">
+                     <div class="modal-header bg-orange">
+                         <h6 class="modal-title text-white">编辑用户名</h6>
+                     </div>
+                     <div class="modal-body">
+                         <div class="d-flex flex-row p-4">
+                             <div style="float:left;height:100%;line-height:40px; margin-right:8px;">用户名</div>
+                             <div class="col-sm-10 bg" style=" float:left; padding-left:0px;">
+                                 <input type="text" class="form-control" id="inputName" style="-webkit-box-shadow:none; box-shadow:none;"/>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="modal-footer">
+                                 <button class="btn btn-default" style="width:100%; background-color: #F90; color:#FFF;">保存</button>
+                     </div>
+
+                 </div>
+             </div>
+         </div>
+
+     <div class="p-4"><span style="color:#999;" class="pr-4">手机号：</span> 17760486523 </div>
+     <div class="p-4"><span style="color:#999;" class="pr-4">头像：</span><img src="../img/test.jpg" height="50px"  width="50px" class="rounded-circle" id="img"/><a class="pl-4" style="color:#F96;" id="shangchuan">更换</a></div>
+         <input type="file" name="file" id="file" accept="image/*" onchange="pimg('file','img')" hidden/>
+         <div class="p-4"><span style="color:#999;" class="pr-4">密码：</span> <a class="pl-4" style="color:#F96;" data-toggle="modal" data-target="#myModalp">修改密码</a></div>
+         <div class="modal fade" id="myModalp">
+             <div class="modal-dialog">
+                 <div class="modal-content">
+                     <div class="modal-header bg-orange">
+                         <h6 class="modal-title text-white">修改密码</h6>
+                     </div>
+                     <div class="modal-body">
+                         <div class="form-group">
+                             <label for="nowpwd">
+                                 当前密码
+                             </label>
+                             <input type="password" class="form-control" id="nowpwd" />
+                         </div>
+
+                         <div class="form-group" >
+                             <div class="col-sm-10" style=" float:left; padding-left:0px;width:40%;">
+                                 <input type="text" class="form-control" id="inputCordZ"  style="-webkit-box-shadow:none;box-shadow:none;padding-right:0px;" placeholder="验证码"/>
+                             </div>
+                             <img src="/user/createImg" width="80" height="40" style="margin-left:15px;" id="cordZ" title="点击更换验证码">
+                         </div>
+
+                             <div class="form-group">
+                                 <label for="newpwd">
+                                     新密码
+                                 </label>
+                                 <input type="password" class="form-control" id="newpwd" />
+                             </div>
+
+                             <div class="form-group">
+                                 <label for="repwd">
+                                     确认密码
+                                 </label>
+                                 <input type="password" class="form-control" id="repwd" />
+                             </div>
+                     </div>
+                     <div class="modal-footer">
+                         <button class="btn btn-default" style="width:100%; background-color: #F90; color:#FFF;">保存</button>
+                     </div>
+
+                 </div>
+             </div>
+         </div>
      </div>
+
      
      <div class="d-flex flex-column p-3 m-3 border rounded">
       <div class="pb-3" style="color:#F60; font-weight:bold; border-bottom:solid 1px #CCCCCC;">身份信息<span style="color:#CCC; margin-left:16px; font-weight:normal;">仅用于必要的安全环节，其他情况下将为您严格保密</span></div>
@@ -589,8 +658,114 @@ a:hover{
     </div>
     
     <div id="dianping" class="container tab-pane fade h-100">
-      <h3>点评</h3>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <div class="border-bottom p-0">
+            <ul class="nav nav-pillh" role="tablist">
+                <li class="nav-item rounded-0">
+                    <a class="nav-link active rounded-0" data-toggle="pill" href="#quanbup">全部</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link rounded-0" data-toggle="pill" href="#noreply">未回复</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div id="quanbup" class="container tab-pane active h-100 p-0"><br>
+            <div class="d-flex flex-column">
+                <div class="media p-2">
+                    <img src="https://static.runoob.com/images/mobile-icon.png" class="align-self-start m-3 rounded-circle" style="width:60px">
+                    <div class="media-body d-flex flex-column pt-2 pb-4 ml-2 border-bottom">
+                        <div class="pt-1 pb-1 d-flex align-items-center">
+                            <div  class="pt-1 pb-1" style="color:#39F;">昵称</div>
+                            <div class="ml-auto mr-3 font-weight-bold" style="font-size:12px;color:rgb(19, 209, 190);">整套出租</div>
+                        </div>
+                        <div class="pt-1 pb-1 d-flex" style="color:#FFCC33">
+                            <div><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <div class=" ml-auto mr-3" style="color:#999999; font-size:12px;">
+                                2019-05-19
+                            </div>
+                        </div>
+                        <div class="pt-1 pb-1" style="font-size:12px;">
+                            2019-05-26
+                            #位置好##服务好##干净卫生##房间大##性价比高#房间是真的宽大，干净舒适，有人接送机，服务周到，前台小姐姐待人热情有耐心，我找到酒店在哪儿，他直接来接我，唯一不好的是没有电梯，不过还好啦最高也就4-5楼，临走时拍了三张图
+                        </div>
+                        <div class="d-flex flex-row">
+                            <div class="p-2" style="max-width:120px;">
+                                <img src="../img/room2.jpg" width="100%">
+                            </div>
+                            <div class="p-2" style="max-width:120px;">
+                                <img src="../img/room3.jpg" width="100%">
+                            </div>
+                            <div class="p-2" style="max-width:120px;">
+                                <img src="../img/room4.jpg" width="100%">
+                            </div>
+                        </div>
+                        <div class="mt-3" style="font-size:12px; color:#69F;">
+                            我的回复:我们会继努力，让我们的客人来我们店都住的开心…24小时免费接送机，旁边有3所大学，机场直线2.6公里，地铁站1.6公里旁边就是小吃街。水木尚品欢迎您再次光临！祝您：开心快乐！幸福安康！
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            <div id="noreply" class="container tab-pane h-100 p-0"><br>
+                <div class="d-flex flex-column">
+                    <div class="media p-2">
+                        <img src="https://static.runoob.com/images/mobile-icon.png" class="align-self-start m-3 rounded-circle" style="width:60px">
+                        <div class="media-body d-flex flex-column pt-2 pb-4 ml-2 border-bottom">
+                            <div class="pt-1 pb-1 d-flex align-items-center">
+                                <div  class="pt-1 pb-1" style="color:#39F;">昵称</div>
+                                <div class="ml-auto mr-3 font-weight-bold" style="font-size:12px;color:rgb(19, 209, 190);">单间</div>
+                            </div>
+                            <div class="pt-1 pb-1 d-flex" style="color:#FFCC33">
+                                <div><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                                <div class=" ml-auto mr-3" style="color:#999999; font-size:12px;">
+                                    2019-05-19
+                                </div>
+                            </div>
+                            <div class="pt-1 pb-1" style="font-size:12px;">
+                                2019-05-26
+                                #位置好##服务好##干净卫生##房间大##性价比高#房间是真的宽大，干净舒适，有人接送机，服务周到，前台小姐姐待人热情有耐心，我找到酒店在哪儿，他直接来接我，唯一不好的是没有电梯，不过还好啦最高也就4-5楼，临走时拍了三张图
+                            </div>
+                            <div class="d-flex flex-row">
+                                <div class="p-2" style="max-width:120px;">
+                                    <img src="../img/room2.jpg" width="100%">
+                                </div>
+                                <div class="p-2" style="max-width:120px;">
+                                    <img src="../img/room3.jpg" width="100%">
+                                </div>
+                                <div class="p-2" style="max-width:120px;">
+                                    <img src="../img/room4.jpg" width="100%">
+                                </div>
+                            </div>
+                            <div class="mt-3" style="font-size:12px;">
+                                <button class="btn btn-default rounded-pill pl-4 pr-4 pt-1 pb-1 font-weight-bold"  style="background-color:#69F; color:#FFF;" data-toggle="modal" data-target="#reply">回复</button>
+                                <div class="modal fade" id="reply">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-orange">
+                                                <h6 class="modal-title text-white">回复>>><a style="color:#69F; ">用户昵称</a></h6>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class=" mt-3 p-2 border mb-1 bg-white rounded border-orange"  contenteditable="true" style="min-height:150px; font-size:14px;">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-default" style="width:100%; background-color: #F90; color:#FFF;">回复</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
     
     <div id="shoukuan" class="container tab-pane fade h-100"><br>

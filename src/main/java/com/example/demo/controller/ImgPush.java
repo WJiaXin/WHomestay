@@ -60,4 +60,11 @@ public class ImgPush {
         }
     }
 
+    @RequestMapping(value = "/dimg")                       //上传图片
+    public void dimg(HttpServletResponse httpServletResponse,@RequestParam("img") String img) throws IOException {
+        System.out.println(img);
+        Files.delete(new File("C:/Users/魏嘉欣/eclipse-workspace/Homestay/target/classes/static/img/space/"+img).toPath());
+
+    }
+
 }
