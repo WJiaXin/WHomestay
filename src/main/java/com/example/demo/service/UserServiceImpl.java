@@ -11,7 +11,14 @@ public class UserServiceImpl implements UserService{
     UserDao userDao;
 
     @Override
-    public User selectUserByName(String name){
-        return userDao.selectUserByName(name);
+    public void insertUser(User user){
+         userDao.insertUser(user);
+    }
+    @Override
+    public User findUserById(String user_id){
+        return userDao.findUserById(user_id);
+    }
+    public int verification(String user_id){
+        return userDao.verification(user_id);
     }
 }
