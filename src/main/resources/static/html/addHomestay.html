@@ -3,8 +3,641 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+  <link href="../bootstrap-4.3.1-dist/css/bootstrap.css" rel="stylesheet" type="text/css">
+      <link href="http://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/daterangepicker.css" rel="stylesheet">
+      <link href="../css/city-picker.css" rel="stylesheet" type="text/css" />
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link href="http://at.alicdn.com/t/font_1216890_m1j4bdwrlz9.css"  rel="stylesheet">
+     
+    <script src="../js/jquery-3.3.1.min.js"></script>
+     <script src="../bootstrap-4.3.1-dist/js/bootstrap.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/moment.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/daterangepicker.js"></script>
+ <script src="../js/city-picker.data.js"></script>
+<script src="../js/city-picker.js"></script>
 </head>
-<body>
+<style>
+#fangyuan .d-flex div{
+	width:110px;
+}
+#fangyuan .d-flex .rounded{
+	text-align:center;
+    cursor: pointer;
+}
+#fangyuan .d-flex .rounded:focus{
+    text-align:center;
+    background-color: #F90;
+    color: #FFF;
+    border: none;
+    outline:none;
 
+}
+#fangyuan .d-flex .font-weight-bold{
+	text-align:left;
+}
+#zc .d-flex .border-orange:focus{
+    outline:none;
+    background-color: #FF9F00;
+}
+#cz .border-orange:hover  i{
+   visibility: visible !important;
+    outline:none;
+}
+#cz .bg-body:focus{
+	color:#FFF;
+    background-color:#FF9F00 !important;
+    outline:none;
+}
+
+#sheshi .ml-5{
+    width:150px !important;
+    text-align: left;
+}
+a{
+        text-decoration: none;
+}
+.disabl{
+    pointer-events: none;
+    cursor:no-drop !important;
+}
+</style>
+<body class="bg-body">
+<div>
+	<div class="row">
+		<div class="col-md-12" id="content">
+			 <nav class="navbar navbar-expand-lg navbar-light bg-white"  style="background-color:#FFF;">
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="navbar-toggler-icon"></span>
+                </button> <a class="navbar-brand" href="home.html" style="margin-left:7.333333%; font-family:'Comic Sans MS', cursive; font-size:24px; "><i class="iconfont icon-jiudianminsu" style="font-size:3em; color:#F90;"></i> Homestay</a>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                
+               
+                    <ul class="navbar-nav ml-md-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown"><img src="../img/test.jpg" height="35px"  width="35px" style="border-radius:20px;"/>  用户昵称</a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="#">修改资料</a>
+                                <a class="dropdown-item" href="#">我的消息</a>
+                                <div class="dropdown-divider">
+                                </div>
+                                <div class="dropdown-header">我是房客</div>
+                                <a class="dropdown-item" href="#">我的收藏</a>
+                                <a class="dropdown-item" href="#">我的订单</a>
+                                <div class="dropdown-divider">
+                                </div>
+                                <div class="dropdown-header">我是房东</div>
+                                <a class="dropdown-item" href="#">我的房源</a>
+                                <a class="dropdown-item" href="#">订单管理</a>
+                                <a class="dropdown-item" href="#">我的点评</a>
+                                <a class="dropdown-item" href="#">收款方式</a>
+                            </div>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#"> <button class="btn btn-default" style="background-color: #F60; color:#FFF;">发布房源</button></a>
+                        </li>
+
+                    </ul>
+                </div>
+            </nav>
+ 
+ 
+ 
+  <div class="row mt-2 bg-white">
+ <div class="col-md-2"></div>
+ <div class="col-md-8 p-4 row">
+    <div class=" align-self-center">
+    <div class="text-white bg-orange rounded-circle" style=" width:25px; height:25px; line-height:23px; text-align:center;" id="1n">
+      1
+      </div>
+    </div>
+    <span class=" text-orange" id="1p">民宿相关</span>
+    <span class="col border border-gray my-auto bg-gray" id="1l"></span>
+    <div class="align-self-center">
+    <div class="text-gray border border-gray rounded-circle" style=" width:25px; height:25px; line-height:23px; text-align:center;" id="2n">
+     2
+      </div>
+    </div>
+    <span class="text-gray" id="2p"> 房型添加</span>
+    
+   <span class="col border border-gray my-auto bg-gray" id="2l"></span>
+    <div class="align-self-center">
+    <div class=" text-gray  border border-gray rounded-circle" style=" width:25px; height:25px; line-height:23px; text-align:center;" id="3n">
+     3
+      </div>
+    </div>
+    <span class="text-gray" id="3p"> 配套设施</span>
+    
+      <span class="col border border-gray my-auto bg-gray" id="3l"></span>
+    <div class="align-self-center">
+    <div class=" text-gray  border border-gray rounded-circle" style=" width:25px; height:25px; line-height:23px; text-align:center;" id="4n">
+     4
+      </div>
+    </div>
+    <span class="text-gray" id="4p"> 房型照片</span>
+      
+      <span class="col border border-gray my-auto bg-gray" id="4l"></span>
+    <div class="align-self-center">
+    <div class=" text-gray  border border-gray rounded-circle" style=" width:25px; height:25px; line-height:23px; text-align:center;" id="5n">
+     5
+      </div>
+    </div>
+    <span class="text-gray" id="5p"> 价格规则</span>
+  </div>
+   <div class="col-md-2"></div>
+   </div>
+   
+<div class="row mt-5 "id="1">
+  <div class="col-md-2"></div>
+  <div class="col-md-8 p-0">
+  
+  <div class="d-flex flex-column rounded bg-white p-3">
+  <div class="border-bottom pt-2 pb-2"><h4 class="text-orange">民宿地址</h4></div>
+  <div class="d-flex flex-row" style="font-size:18px; font-weight:bold;">
+
+      <div class="p-3 d-flex flex-column text-dark" >
+          <div class="p-2">民宿位于：</div>
+          <div class="border rounded ml-2 pr-2 " style="font-size:14px; font-weight:normal;"><input type="text" class="form-control" readonly placeholder="城市或目的地" data-toggle="city-picker"></div>
+  <div class=" p-2 mt-3">街道地址：</div>
+          <div class="border rounded ml-2 pr-2"> <input type="text" class="form-control border-0" placeholder="例如：学府路一段24号" style="-webkit-box-shadow:none; box-shadow:none"></div>
+  <div class=" p-2 mt-3">小区名称：</div>
+          <div class="border rounded ml-2 pr-2"> <input type="text" class="form-control border-0" placeholder="例如：常乐小区" style="-webkit-box-shadow:none; box-shadow:none"></div>
+  <div class=" p-2 mt-3">楼、单元：</div>
+          <div class="border rounded ml-2 pr-2"> <input type="text" class="form-control border-0" placeholder="例如：4栋3024" style="-webkit-box-shadow:none; box-shadow:none"></div>
+  </div>
+      <div class="p-3 d-flex flex-column flex-fill mr-4" >
+          <div class="p-2">位置：</div>
+          <div class="rounded flex-fill" id="container"></div>
+      </div>
+  </div>
+  </div>
+
+      <div class="d-flex flex-column mt-4 rounded bg-white p-3">
+          <div class="border-bottom pt-2 pb-2"><h4 class="text-orange">民宿信息</h4></div>
+              <div class="p-3 d-flex flex-column" style="font-size:20px;">
+                  <div class="text-dark p-2 font-weight-bold">民宿类型:</div>
+                  <div class="d-flex flex-column" style="font-size:16px;" id="fangyuan">
+                  <div class="d-flex mt-3">
+                  <div class="p-2 mt-3 mb-3 font-weight-bold">城市居民</div>
+                  <div class="p-2 m-3 border rounded" tabindex="1">住宅名宿</div>
+                  <div class="p-2 m-3 border rounded" tabindex="2">四合院</div>
+                  <div class="p-2 m-3 border rounded" tabindex="3">别墅</div>
+                  <div class="p-2 m-3 border rounded" tabindex="4">洋房</div>
+                  </div>
+                   <div class="d-flex flex-row align-items-center">
+                   <div class="p-2 mt-2 mb-2 font-weight-bold">酒店式公寓</div><div class="p-2 m-3 border rounded" tabindex="5">集中式公寓</div>
+                  </div>
+                   <div class="d-flex flex-row align-items-center">
+                   <div class="p-2 mt-2 mb-2 font-weight-bold">景区民宿</div><div class="p-2 m-3 border rounded" tabindex="6"> 度假民宿</div><div class="p-2 m-3 border rounded" tabindex="7">客栈</div>
+                  </div>
+                   <div class="d-flex flex-row align-items-center">
+                   <div class="p-2 mt-2 mb-2 font-weight-bold">农家乐</div><div class="p-2 m-3 border rounded" tabindex="8">农家乐</div>
+                  </div>
+                   <div class="d-flex flex-row align-items-center">
+                   <div class="p-2 mt-2 mb-2 font-weight-bold">特色住宅</div><div class="p-2 m-3 border rounded" tabindex="9">集装箱</div><div class="p-2 m-3 border rounded" tabindex="10">木屋</div>
+                  </div>
+                   <div class="d-flex flex-row align-items-center">
+                   <div class="p-2 mt-2 mb-2 font-weight-bold">其它</div><div class="p-2 m-3 border rounded" tabindex="11">其它</div>
+                  </div>
+      </div>
+
+                  <div class="text-dark font-weight-bold mt-4">民宿名称：</div>
+                  <div class="border rounded border-orange mt-3 w-25">
+                      <input type="text" class="form-control border-0" placeholder="例如：4栋3024" style="-webkit-box-shadow:none; box-shadow:none">
+                  </div>
+                  <div class="text-dark font-weight-bold mt-4 ">民宿简介：</div>
+                  <div class=" mt-3 p-2 border mb-1 bg-white rounded border-orange w-50"  contenteditable="true" style="min-height:200px; font-size:14px;">
+                  </div>
+                  <div class="text-dark font-weight-bold mt-4 ">民宿照片（内部、周边）：</div>
+                  <div class="ml-2 mt-4">封面(只能上传一张）：</div>
+                  <div class="d-flex flex-row mb-1 bg-white align-items-center" id="img1">
+                      <div class="m-2 p-2" >
+
+                          <div style="width:6em;height:6em;color:rgb(98, 129, 166); text-align: center;line-height: 6em;" class="rounded bg-body" id="shangchuan" onclick="shangchuan('file1')"><i class="iconfont icon-shangchuantupian3" style="font-size:32px;"  title="上传图片" ></i></div>
+                      </div>
+                  </div>
+                  <div class="ml-2 mt-4">内部：</div>
+                  <div class="d-flex flex-row mb-1 bg-white align-items-center" id="img2">
+                  <div class="m-2 p-2" >
+
+                      <div style="width:6em;height:6em;color:rgb(98, 129, 166); text-align: center;line-height: 6em;" class="rounded bg-body" onclick="shangchuan('file2')"><i class="iconfont icon-shangchuantupian3" style="font-size:32px;"  title="上传图片" ></i></div>
+                  </div>
+                  </div>
+                  <div class="ml-2 mt-4">周边：</div>
+                  <div class="d-flex flex-row mb-1 bg-white align-items-center" id="img3">
+                  <div class="m-2 p-2">
+
+                      <div style="width:6em;height:6em;color:rgb(98, 129, 166); text-align: center;line-height: 6em;" class="rounded bg-body align-self-center" onclick="shangchuan('file3')"><i class="iconfont icon-shangchuantupian3" style="font-size:32px;"  title="上传图片" ></i></div>
+                  </div>
+                  </div>
+  </div>
+      </div>
+
+      <div class="d-flex flex-column mt-4 rounded bg-white p-3">
+          <div class="border-bottom pt-2 pb-2"><h4 class="text-orange">民宿政策</h4></div>
+          <div class="p-3 d-flex flex-column" style="font-size:16px;" id="zc">
+              <div class="text-dark p-2 font-weight-bold" style="font-size:20px;">退订政策：</div>
+              <div class="d-flex align-items-center m-2"><div style="width: 20px;height: 20px;" class="border-orange rounded-circle border" tabindex="1"></div><div>【宽松】入住前1天12:00前退订，可获100%退款。之后退订不退款</div></div>
+              <div class="d-flex align-items-center m-2"><div style="width: 20px;height: 20px;" class="border-orange rounded-circle border" tabindex="1"></div><div>【适中】入住的前5天12:00前退订，可获100%退款。之后退订不退款</div></div>
+              <div class="d-flex align-items-center m-2"><div style="width: 20px;height: 20px;" class="border-orange rounded-circle border" tabindex="1"></div><div>【严格】入住的前7天12:00前退订，可获50%退款。之后退订不退款</div></div>
+              <div class="text-dark p-2 font-weight-bold" style="font-size:20px;">入住政策：</div>
+              <div class="d-flex align-items-center flex-row m-2">
+                  <div class="p-2">当日</div><div class="p-2"><select class="form-control">
+                  <option value ="volvo">12:00</option>
+                  <option value ="saab">13:00</option>
+                  <option value="opel">14:00</option>
+                  <option value="audi">15:00</option></select></div><div class="p-2">后入住</div>
+                  <div class="p-2 ml-5">次日</div>
+                  <div class="p-2"><select class="form-control">
+                  <option value ="volvo">12:00</option>
+                  <option value ="saab">13:00</option>
+                  <option value="opel">14:00</option>
+                  <option value="audi">15:00</option></select></div><div class="p-2">前退房</div></div>
+          </div>
+      </div>
+      <div class="p-2 mt-4">
+          <button class="btn btn-default" style="background-color: #F90; color:#FFF;" onclick="next('1','2')">下一步</button>
+      </div>
+
+  </div>
+  <div class="col-md-2"> <input type="file" name="file" id="file1" accept="image/*" onchange="pimg('file1','img1')" hidden/><input type="file" name="file" id="file2" accept="image/*" onchange="pimg('file2','img2')" hidden/><input type="file" name="file" id="file3" accept="image/*" onchange="pimg('file3','img3')" hidden/></div>
+</div>
+
+            <div class="row mt-5 " hidden id="2">
+                <div class="col-md-2"></div>
+                <div class="col-md-8 p-0">
+
+                    <div class="d-flex flex-column rounded bg-white p-3 text-dark" id="cz">
+                        <div class="border-bottom pt-2 pb-2"><h4 class="text-orange">房型信息</h4></div>
+                                <div class="p-2 font-weight-bold" style="font-size: 20px;">出租类型：</div>
+                                <div class="d-flex flex-row align-items-center p-2"  tabindex="0">
+                                <div class="p-4 bg-body rounded" tabindex="0"><i class="iconfont icon-zhengtaofangzi font-weight-bold" style=" font-size:2em;"></i></div>
+                                <div class="ml-3 text-gray6" style="font-size:14px;"><h5 style="color:#000;">整套房子</h5>
+客人可以预订整个空间，不与您或其它客人共住，如一整套三居室</div>
+                                </div>
+
+                                 <div class="d-flex flex-row align-items-center p-2"  tabindex="0">
+                                <div class="p-4 bg-body rounded" tabindex="0"><i class="iconfont icon-danjian font-weight-bold" style=" font-size:2em;"></i></div>
+                                <div class="ml-3 text-gray6" style="font-size:14px;"><h5 style="color:#000;">独立房间</h5>
+客人预订的是一个或多个房间，公共空间与他人共用，如三居室中的主卧</div>
+                                </div>
+                                <div class="p-2 mt-4 font-weight-bold" style="font-size: 20px;">房屋类型：</div>
+                                <div class="d-flex flex-row align-items-center p-2"  id="chuzu">
+                                <div class="d-flex flex-row border border-orange rounded align-items-center" tabindex="0">
+                                    <div class="p-2"> <i class="iconfont icon-jian"  style="font-size:14px;visibility:hidden;" onclick="jian('shi')"></i></div>
+                                    <div class="pt-2 pb-2 pl-3 pr-3" id="shi">1</div>
+                                    <div class="p-2"><i class="iconfont icon-jia"  style="font-size:14px;visibility:hidden;" onclick="jia('shi')"></i></div>
+                            </div>
+                                    <div class="p-2">室</div>
+                                    <div class="d-flex flex-row border border-orange rounded align-items-center ml-3" tabindex="0">
+                                        <div class="p-2"> <i class="iconfont icon-jian"  style="font-size:14px;visibility:hidden;" onclick="jian('ting')"></i></div>
+                                        <div class="pt-2 pb-2 pl-3 pr-3" id="ting">1</div>
+                                        <div class="p-2"><i class="iconfont icon-jia"  style="font-size:14px;visibility:hidden;" onclick="jia('ting')"></i></div>
+                                    </div>
+                                    <div class="p-2">厅</div>
+                                    <div class="d-flex flex-row border border-orange rounded align-items-center ml-3" tabindex="0">
+                                        <div class="p-2"> <i class="iconfont icon-jian"  style="font-size:14px;visibility:hidden;" onclick="jian('wei')"></i></div>
+                                        <div class="pt-2 pb-2 pl-3 pr-3" id="wei">1</div>
+                                        <div class="p-2"><i class="iconfont icon-jia"  style="font-size:14px;visibility:hidden;" onclick="jia('wei')"></i></div>
+                                    </div>
+                                    <div class="p-2">卫</div>
+                                    <div class="d-flex flex-row border border-orange rounded align-items-center ml-3" tabindex="0">
+                                        <div class="p-2"> <i class="iconfont icon-jian"  style="font-size:14px;visibility:hidden;" onclick="jian('chu')"></i></div>
+                                        <div class="pt-2 pb-2 pl-3 pr-3" id="chu">1</div>
+                                        <div class="p-2"><i class="iconfont icon-jia"  style="font-size:14px;visibility:hidden;" onclick="jia('chu')"></i></div>
+                                    </div>
+                                    <div class="p-2">厨</div>
+                                    <div class="d-flex flex-row border border-orange rounded align-items-center ml-3" tabindex="0">
+                                        <div class="p-2"> <i class="iconfont icon-jian"  style="font-size:14px;visibility:hidden;" onclick="jian('yangtai')"></i></div>
+                                        <div class="pt-2 pb-2 pl-3 pr-3" id="yangtai">1</div>
+                                        <div class="p-2"><i class="iconfont icon-jia"  style="font-size:14px;visibility:hidden;" onclick="jia('yangtai')"></i></div>
+                                    </div>
+                                    <div class="p-2">阳台</div>
+                                </div>
+
+                                <div class="p-2 mt-4 font-weight-bold" style="font-size: 20px;">房型面积：</div>
+                                <div class="d-flex flex-row"> <div class="border rounded ml-2 pr-2"> <input type="text" class="form-control border-0" placeholder="" style="-webkit-box-shadow:none; box-shadow:none"></div><div class="align-self-center ml-2">㎡</div></div>
+                                <div class="p-2 mt-4 font-weight-bold" style="font-size: 20px;">床型：</div>
+                                <div class="d-flex flex-row align-items-center p-2">
+                                    <div class="d-flex flex-row border border-orange rounded align-items-center" tabindex="0">
+                                        <div class="p-2"> <i class="iconfont icon-jian"  style="font-size:14px;visibility:hidden;" onclick="jian('2bigbed')"></i></div>
+                                        <div class="pt-2 pb-2 pl-3 pr-3" id="2bigbed">1</div>
+                                        <div class="p-2"><i class="iconfont icon-jia"  style="font-size:14px;visibility:hidden;" onclick="jia('2bigbed')"></i></div>
+                                    </div>
+                                    <div class="p-2">双人大床<h6 class="text-gray9" style="font-size: 12px;">宽1.8米及以上</h6></div>
+                                    <div class="d-flex flex-row border border-orange rounded align-items-center ml-3" tabindex="0">
+                                        <div class="p-2"> <i class="iconfont icon-jian"  style="font-size:14px;visibility:hidden;" onclick="jian('2bed')"></i></div>
+                                        <div class="pt-2 pb-2 pl-3 pr-3" id="2bed">1</div>
+                                        <div class="p-2"><i class="iconfont icon-jia"  style="font-size:14px;visibility:hidden;" onclick="jia('2bed')"></i></div>
+                                    </div>
+                                    <div class="p-2">双人床<h6 class="text-gray9" style="font-size: 12px;">宽1.3-1.8米</h6></div>
+                                    <div class="d-flex flex-row border border-orange rounded align-items-center ml-3" tabindex="0">
+                                        <div class="p-2"> <i class="iconfont icon-jian"  style="font-size:14px;visibility:hidden;" onclick="jian('1bed')"></i></div>
+                                        <div class="pt-2 pb-2 pl-3 pr-3" id="1bed">1</div>
+                                        <div class="p-2"><i class="iconfont icon-jia"  style="font-size:14px;visibility:hidden;" onclick="jia('1bed')"></i></div>
+                                    </div>
+                                    <div class="p-2">单人床<h6 class="text-gray9" style="font-size: 12px;">宽1.3以下</h6></div>
+                                    <div class="d-flex flex-row border border-orange rounded align-items-center ml-3" tabindex="0">
+                                        <div class="p-2"> <i class="iconfont icon-jian"  style="font-size:14px;visibility:hidden;" onclick="jian('shangxia')"></i></div>
+                                        <div class="pt-2 pb-2 pl-3 pr-3" id="shangxia">1</div>
+                                        <div class="p-2"><i class="iconfont icon-jia"  style="font-size:14px;visibility:hidden;" onclick="jia('shangxia')"></i></div>
+                                    </div>
+                                    <div class="p-2">上下铺</div>
+                                </div>
+                                <div class="d-flex flex-row align-items-center p-2">
+                                    <div class="d-flex flex-row border border-orange rounded align-items-center" tabindex="0">
+                                        <div class="p-2"> <i class="iconfont icon-jian"  style="font-size:14px;visibility:hidden;" onclick="jian('shafa')"></i></div>
+                                        <div class="pt-2 pb-2 pl-3 pr-3" id="shafa">1</div>
+                                        <div class="p-2"><i class="iconfont icon-jia"  style="font-size:14px;visibility:hidden;" onclick="jia('shafa')"></i></div>
+                                    </div>
+                                    <div class="p-2">沙发床</div>
+                                    <div class="d-flex flex-row border border-orange rounded align-items-center ml-3" tabindex="0">
+                                        <div class="p-2"> <i class="iconfont icon-jian"  style="font-size:14px;visibility:hidden;" onclick="jian('tatami')"></i></div>
+                                        <div class="pt-2 pb-2 pl-3 pr-3" id="tatami">1</div>
+                                        <div class="p-2"><i class="iconfont icon-jia"  style="font-size:14px;visibility:hidden;" onclick="jia('tatami')"></i></div>
+                                    </div>
+                                    <div class="p-2">榻榻米</div>
+                                    <div class="d-flex flex-row border border-orange rounded align-items-center ml-3" tabindex="0">
+                                        <div class="p-2"> <i class="iconfont icon-jian"  style="font-size:14px;visibility:hidden;" onclick="jian('qita')"></i></div>
+                                        <div class="pt-2 pb-2 pl-3 pr-3" id="qita">1</div>
+                                        <div class="p-2"><i class="iconfont icon-jia"  style="font-size:14px;visibility:hidden;" onclick="jia('qita')"></i></div>
+                                    </div>
+                                    <div class="p-2">其他</div>
+                                </div>
+
+                                <div class="p-2 mt-4 font-weight-bold" style="font-size: 20px;">卫生间类型：</div>
+                                <div class="d-flex flex-row align-items-center p-2"  tabindex="0">
+                                    <div class="p-4 bg-body rounded" tabindex="0"><i class="iconfont icon-_huabanfuben" style=" font-size:2em;"></i></div>
+                                    <div class="ml-3"><h5 style="color:#000;">独立卫生间</h5></div>
+                                </div>
+
+                                <div class="d-flex flex-row align-items-center p-2"  tabindex="0">
+                                    <div class="p-4 bg-body rounded" tabindex="0"><i class="iconfont icon-gonggongweishengjian1" style="font-size:2em;"></i></div>
+                                    <div class="ml-3"><h5 style="color:#000;">公共卫生间</h5></div>
+                                </div>
+                        <div class="p-2 mt-4">
+                            <button class="btn btn-default" style="background-color: #F90; color:#FFF;" onclick="next('2','3')">下一步</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-2"> </div>
+            </div>
+
+            <div class="row mt-5" hidden id="3">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 p-0">
+                <div class="d-flex flex-column rounded bg-white p-3">
+                    <div class="border-bottom pt-2 pb-2"><h4 class="text-orange">房型设施</h4></div>
+                    <div class="d-flex align-items-start p-2">
+                        <div class="p-3" style="min-width: 80px;">卫浴：</div>
+                        <div class="d-flex flex-wrap flex-row align-content-start text-gray9 flex-grow-1">
+                            <div class="p-3 ml-5"><i class="fas fa-shower"></i> 热水淋浴</div>
+                            <div class="p-3 ml-5"><i class="fas fa-bath"></i> 浴缸</div>
+                            <div class="p-3 ml-5"><i class="fas fa-toilet-paper"></i> 手纸</div>
+                            <div class="p-3 ml-5"><i class="iconfont icon-maojin"></i> 毛巾</div>
+                            <div class="p-3 ml-5"><i class="iconfont icon-iconfontmuyulu"></i> 浴液/洗发水</div>
+                            <div class="p-3 ml-5"><i class="iconfont icon-xiangzao"></i> 香皂</div>
+                            <div class="p-3 ml-5"><i class="iconfont icon-yaju"></i> 牙具</div>
+                            <div class="p-3 ml-5"><i class="iconfont icon-tuoxie"></i> 拖鞋</div>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-start p-2 mt-4">
+                        <div class="p-3" style="min-width: 80px;">电器：</div>
+                        <div class="d-flex flex-wrap align-content-start text-gray9">
+                            <div class="p-3 ml-5"><i class="fas fa-snowflake"></i> 空调</div>
+                            <div class="p-3 ml-5"><i class="fas fa-tv"></i> 电视</div>
+                            <div class="p-3 ml-5"><i class="iconfont icon-xiyiji"></i> 洗衣机</div>
+                            <div class="p-3 ml-5"><i class="fas fa-tint"></i> 饮水设备</div>
+                            <div class="p-3 ml-5"><i class="iconfont icon-bingxiang"></i> 冰箱</div>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-start p-2 mt-4">
+                        <div class="p-3" style="min-width: 80px;">设施：</div>
+                        <div class="d-flex flex-wrap align-content-start text-gray9">
+                            <div class="p-3 ml-5"><i class="fas fa-wifi"></i> 无线网络</div>
+                            <div class="p-3 ml-5"><i class="fas fa-network-wired"></i> 有线网络</div>
+                            <div class="p-3 ml-5"><i class="fas fa-sun"></i> 暖气</div>
+                            <div class="p-3 ml-5"><i class="fas fa-door-closed"></i> 门禁</div>
+                            <div class="p-3 ml-5"><i class="fas fa-parking"></i> 停车位</div>
+                            <div class="p-3 ml-5"><i class="iconfont icon-diantirentiganying"></i> 电梯</div>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-start p-2 mt-4">
+                        <div class="p-3" style="min-width: 80px;">要求：</div>
+                        <div class="d-flex flex-wrap align-content-start text-gray9">
+                            <div class="p-3 ml-5"><i class="fas fa-dog"></i> 允许携宠</div>
+                            <div class="p-3 ml-5"><i class="fas fa-glass-cheers"></i> 允许聚会</div>
+                            <div class="p-3 ml-5"><i class="fas fa-concierge-bell"></i> 允许做饭</div>
+                        </div>
+                    </div>
+
+                    <div class="p-2 mt-4">
+                        <button class="btn btn-default" style="background-color: #F90; color:#FFF;" onclick="next('3','4')">下一步</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+
+
+            <div class="jumbotron text-center bg-light mt-5" style="margin-bottom:0; width:100%;">
+                <p>底部内容</p>
+            </div>
+        </div>
+
+            <div class="row mt-5 " id="4" hidden>
+                <div class="col-md-2"></div>
+                <div class="col-md-8 p-0">
+                    <div class="d-flex flex-column rounded bg-white p-3">
+                        <div class="border-bottom pt-2 pb-2"><h4 class="text-orange">房型照片</h4></div>
+                        <div class="ml-2 mt-4">封面：<span style="font-size:14px;color: #999;">封面图有且只能上传 1 张照片，建议使用客厅或卧室横图。</span></div>
+                        <div class="d-flex flex-row mb-1 bg-white align-items-center" id="img4">
+                            <div class="m-2 pt-2" >
+
+                                <div style="width:6em;height:6em;color:rgb(98, 129, 166); text-align: center;line-height: 6em;" id="shangchuan2" class="rounded bg-body" onclick="shangchuan('file4')"><i class="iconfont icon-shangchuantupian3" style="font-size:32px;"  title="上传图片" ></i></div>
+                            </div>
+                        </div>
+                        <div class="ml-2 mt-4">客厅：<span style="font-size:14px;color: #999;">请上传1间客厅的照片，最多10张。</span></div>
+                        <div class="d-flex flex-row mb-1 bg-white align-items-center" id="img5">
+                            <div class="m-2 pt-2" >
+
+                                <div style="width:6em;height:6em;color:rgb(98, 129, 166); text-align: center;line-height: 6em;" class="rounded bg-body" onclick="shangchuan('file5')"><i class="iconfont icon-shangchuantupian3" style="font-size:32px;"  title="上传图片" ></i></div>
+                            </div>
+                        </div>
+                        <div class="ml-2 mt-4">卧室：<span style="font-size:14px;color: #999;">请上传1间卧室的照片，最多10张。</span></div>
+                        <div class="d-flex flex-row mb-1 bg-white align-items-center" id="img6">
+                            <div class="m-2 pt-2">
+
+                                <div style="width:6em;height:6em;color:rgb(98, 129, 166); text-align: center;line-height: 6em;" class="rounded bg-body align-self-center" onclick="shangchuan('file6')"><i class="iconfont icon-shangchuantupian3" style="font-size:32px;"  title="上传图片" ></i></div>
+                            </div>
+                        </div>
+                        <div class="ml-2 mt-4">卫浴：<span style="font-size:14px;color: #999;">请上传1间卫生间的照片，图片中必须展示完整的卫浴设施，最多10张。</span></div>
+                        <div class="d-flex flex-row mb-1 bg-white align-items-center" id="img7">
+                            <div class="m-2 pt-2">
+
+                                <div style="width:6em;height:6em;color:rgb(98, 129, 166); text-align: center;line-height: 6em;" class="rounded bg-body align-self-center" onclick="shangchuan('file7')"><i class="iconfont icon-shangchuantupian3" style="font-size:32px;"  title="上传图片" ></i></div>
+                            </div>
+                        </div>
+                        <div class="ml-2 mt-4">厨房：<span style="font-size:14px;color: #999;">请上传1间厨房的照片，图片中必须展示厨具设施，最多10张。</span></div>
+                        <div class="d-flex flex-row mb-1 bg-white align-items-center" id="img8">
+                            <div class="m-2 pt-2">
+
+                                <div style="width:6em;height:6em;color:rgb(98, 129, 166); text-align: center;line-height: 6em;" class="rounded bg-body align-self-center" onclick="shangchuan('file8')"><i class="iconfont icon-shangchuantupian3" style="font-size:32px;"  title="上传图片" ></i></div>
+                            </div>
+                        </div>
+                        <div class="ml-2 mt-4">其他：<span style="font-size:14px;color: #999;">最多10张。</span></div>
+                        <div class="d-flex flex-row mb-1 bg-white align-items-center" id="img9">
+                            <div class="m-2 pt-2">
+
+                                <div style="width:6em;height:6em;color:rgb(98, 129, 166); text-align: center;line-height: 6em;" class="rounded bg-body align-self-center" onclick="shangchuan('file8')"><i class="iconfont icon-shangchuantupian3" style="font-size:32px;"  title="上传图片" ></i></div>
+                            </div>
+                        </div>
+
+
+                        <div class="p-2 mt-4">
+                            <button class="btn btn-default" style="background-color: #F90; color:#FFF;" onclick="next('4','5')">下一步</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <input type="file" name="file" id="file4" accept="image/*" onchange="pimg('file4','img4')" hidden/><input type="file" name="file" id="file5" accept="image/*" onchange="pimg('file5','img5')" hidden/><input type="file" name="file" id="file6" accept="image/*" onchange="pimg('file6','img6')" hidden/>
+                    <input type="file" name="file" id="file7" accept="image/*" onchange="pimg('file7','img7')" hidden/><input type="file" name="file" id="file8" accept="image/*" onchange="pimg('file8','img8')" hidden/><input type="file" name="file" id="file9" accept="image/*" onchange="pimg('file9','img9')" hidden/>
+                </div>
+            </div>
+
+
+            <div class="row mt-5 " id="5" hidden>
+                <div class="col-md-2"></div>
+                <div class="col-md-8 p-0">
+                    <div class="d-flex flex-column rounded bg-white p-3">
+                        <div class="border-bottom pt-2 pb-2"><h4 class="text-orange">价格规则</h4></div>
+                        <div class="p-2 mt-4 font-weight-bold" style="font-size: 20px;">日价：</div>
+                        <div class="d-flex flex-row"><div class="border rounded ml-2"> <input type="text" class="form-control border-0" style="-webkit-box-shadow:none; box-shadow:none"></div><div class="p-2">元/晚</div></div>
+                        <div class="p-2 mt-4 font-weight-bold" style="font-size: 20px;">清洁费：<span style="font-size:14px;color: #999;">用于房客入住前后的房屋清洁、布草更换等。</span></div>
+                        <div class="d-flex flex-row"><div class="border rounded ml-2"> <input type="text" class="form-control border-0" style="-webkit-box-shadow:none; box-shadow:none"></div><div class="p-2">元</div></div>
+                        <div class="p-2 mt-4 font-weight-bold" style="font-size: 20px;">宜居人数：</div>
+                        <div class="d-flex flex-row border border-orange rounded align-items-center ml-3" style="width: 110px;" tabindex="0">
+                            <div class="p-2"> <i class="iconfont icon-jian"  style="font-size:14px;" onclick="jian('yiju')"></i></div>
+                            <div class="pt-2 pb-2 pl-3 pr-3" id="yiju">1</div>
+                            <div class="p-2"><i class="iconfont icon-jia"  style="font-size:14px;" onclick="jia('yiju')"></i></div>
+                        </div>
+
+
+                        <div class="p-2 mt-4">
+                            <button class="btn btn-default" style="background-color: #F90; color:#FFF;">发布</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+            </div>
+
+                <div class="jumbotron text-center bg-light mt-5" style="margin-bottom:0; width:100%;">
+                    <p>底部内容</p>
+                </div>
+            </div>
+
+</div>
+</div>
+</div>
 </body>
+
+<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.14&key=9839aaba1926a947266476327971a8ea&plugin=AMap.AdvancedInfoWindow,AMap.Autocomplete"></script>
+<script type="text/javascript" src="https://cache.amap.com/lbs/static/addToolbar.js"></script>
+<script src="//webapi.amap.com/ui/1.0/main.js"></script>
+<script>
+
+    var auto = new AMap.Autocomplete({
+        input: "search"
+    });
+
+    var map = new AMap.Map('container', {
+        resizeEnable: true, //是否监控地图容器尺寸变化
+        zoom:16, //初始化地图层级
+        center:[103.985289,30.581767]
+    });
+    var marker = new AMap.Marker({
+        position:[103.985289,30.581767]//位置
+    })
+    marker.setMap(map);
+    //鼠标点击marker弹出自定义的信息窗体
+    AMap.event.addListener(marker, 'click', function () {
+        infoWindow.open(map, marker.getPosition());
+    });
+    //实例化信息窗体
+    var content = [];
+    content.push("<span style='font-weight: bold;'>地址：</span>成都信息工程大学航空港校区体育公园   <a href='https://www.amap.com/?30.581767,103.985289' style='margin-left: 16px;'>>>>导航</a>");
+    var infoWindow = new AMap.InfoWindow({
+        content:  content.join("<br/>"),
+        offset: new AMap.Pixel(16, -45)
+    });
+
+    function shangchuan(id) {
+        $('#'+id+'').click();
+    }
+    function pimg(id,img){
+        var formData = new FormData();
+        formData.append("file",$('#'+id+'')[0].files[0]);
+        $.ajax({
+            type: 'post',
+            url:"/img/pimg",
+            data: formData,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                $('#'+img+'').prepend("<div class=\"ml-2 mr-2\" style=\"width:6em; height:6em;\" id=\""+data+"\" ><img src=\"../img/space/"+data+"\" class=\"img-thumbnail\" style=\"max-height:100%; width:100%;\" ></div><i class=\"iconfont icon-shanchu ml-n4 bg-white text-danger align-self-start mt-3 rounded-circle\" onclick=\"del('"+id+"','"+data+"',this)\"></i>");
+                if(id=='file1'){$("#shangchuan").addClass('disabl');}
+                if(id=='file4'){$("#shangchuan2").addClass('disabl');}
+            },
+            error: function (XMLHttpRequest, textStatus, error) {
+                alert('照片名含有非法字符，请重新上传！');
+            }
+        });
+    };
+
+    function del(id,img,obj){
+        $.ajax({
+            type: 'post',
+            url:"/img/dimg?img="+img,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                $('[id="' + img + '"]').remove();
+                obj.remove();
+                if(id=='file1'){$("#shangchuan").removeClass('disabl'); }
+                if(id=='file4'){$("#shangchuan2").removeClass('disabl'); }
+            },
+            error: function (XMLHttpRequest, textStatus, error) {
+                alert(error);
+            }
+        });
+    }
+    function jian(id){
+        if($('#'+id+'').html()>0) {
+            $('#' + id + '').html(($('#' + id + '').html()-1));
+        }
+    }
+    function jia(id){
+
+            $('#' + id + '').html(($('#' + id + '').html()*1+1*1));
+
+    }
+
+    function next(now,next){
+        $('#'+now+'').hide();
+        $('#'+now+'p').attr('class','text-orange')
+        $('#'+now+'n').attr('class','text-white bg-orange rounded-circle')
+        $('#'+now+'l').attr('class','col my-auto border border-orange bg-orange')
+        $('#'+next+'').removeAttr("hidden");
+        $('#'+next+'').show();
+        $('#'+now+'n').bind('click',function (){
+            $('#content>.row:eq('+now+')').show();
+            $('#content>.row:gt('+now+')').hide();
+            $('#content>.row:lt('+now+'):gt(0)').hide();
+        })
+    }
+
+
+</script>
 </html>

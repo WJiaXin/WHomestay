@@ -29,6 +29,3 @@ function shangchuan(){
         }
     });
 }
-$("#shangchuan").click(function () {
-    $("#file").click();
-})

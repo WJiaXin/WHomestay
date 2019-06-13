@@ -8,26 +8,27 @@ $(window).scroll(function(){
     }
 
 });
-function getInFo() {
+$("#shangchuan").click(function () {
+    $("#file").click();
+})
+function pimg(id,img){
     var formData = new FormData();
-    formData.append("inputPhone", $('#inputPhone').val());
-    formData.append("inputPassword", $('#inputPassword').val());
-    formData.append("inputCord1", $('#inputCord1').val());
+    formData.append("file",$('#'+id+'')[0].files[0]);
     $.ajax({
-        type: 'post',        //数据提交的方式
-        url: "/user/getInFo",//数据提交的路径
+        type: 'post',
+        url:"/img/pimg",
         data: formData,
         cache: false,
         processData: false,
         contentType: false,
         success: function (data) {
-            var json = eval('(' + data + ')');
-            $('#ziliao .dropdown-toggle').html("<img src=\"../img/user/"+json.user_id+"/"+json.user_picture+"\" height=\"35px\"  width=\"35px\" style=\"border-radius:20px;\"/> "+json.user_name);
-            $('#myModal').modal('hide');
+            $("#img").attr('src',"../img/space/"+data);
         },
-        // }
         error: function (XMLHttpRequest, textStatus, error) {
-            alert("数据错误！");
+            alert('照片名含有非法字符，请重新上传！');
         }
-    })
-}
+    });
+};
+$('#cordZ').click(function () {
+    $('#cordZ').attr('src',"/user/createImg?time="+ new Date().getTime());
+})

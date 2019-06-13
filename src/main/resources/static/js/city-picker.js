@@ -65,8 +65,7 @@
                     (placeholder ? '<span class="placeholder">' + placeholder + '</span>' : '') +
                     '<span class="title"></span><div class="arrow"></div>' + '</div>',
 
-                dropdown = '<div class="city-picker-dropdown" style="left:0px;top:100%;' +
-                    this.getWidthStyle(p.width, true) + '">' +
+                dropdown = '<div class="city-picker-dropdown" style="left:0px;top:'+(p.top+p.height+4)+'px;' +this.getWidthStyle(p.width, true) + '">' +
                     '<div class="city-select-wrap">' +
                     '<div class="city-select-tab">' +
                     '<a class="active" data-count="province">省份</a>' +
