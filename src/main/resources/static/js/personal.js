@@ -92,7 +92,7 @@ function getAllOrder(i) {
                 $('#listallorder').html(html1);
         },
         error: function (XMLHttpRequest, textStatus, error) {
-            alert("RoomInfo数据传输失败！");
+            alert("得到全部信息失败失败！");
         }
     });
 }
@@ -131,7 +131,7 @@ function getBookingOrder(i) {
                             "   <div class=\"pl-0 pr-3 pt-2 bg-white\">单间</div>\n" +
                             "    <div class=\"pl-3 pr-3 ml-auto\">房价：￥" + newData[i].o_price + "</div>\n" +
                             "    <div class=\"pl-3 pr-5 ml-auto\">" + newData[i].state + "</div>\n" +
-                            " <div class=\"pl-3 pr-5 ml-auto\"><button class=\"btn btn-default rounded pl-2 pr-2 pt-1 pb-1\"onclick=\"cancelOrder("+newData[i].o_id+")\" style=\"background-color:#FFF; color:#39F; border:#39F 1px solid; font-size:12px;\">取消</button></div>"+
+                            " <div class=\"pl-3 pr-5 ml-auto\"><button class=\"btn btn-default rounded pl-2 pr-2 pt-1 pb-1\"onclick=\"cancelOrder("+newData[i].o_id+")\" style=\"background-color:#FFF; color:#39F; border:#39F 1px solid; font-size:12px;\">取消</button><button class=\"btn btn-default rounded pl-2 pr-2 pt-1 pb-1\"onclick=\"querenOrder(" + newData[i].o_id + ")\" style=\"background-color:#FFF; color:#39F; border:#39F 1px solid; font-size:12px;\">确认</button></div>" +
                             "    \n" +
                             "    </div>\n" +
                             "    <div>\n" +
@@ -158,7 +158,7 @@ function getBookingOrder(i) {
                 $('#listbookingorder').html(html1);
             },
             error: function (XMLHttpRequest, textStatus, error) {
-                alert("RoomInfo数据传输失败！");
+                alert("得到已下单信息失败！");
             }
         });
     }
@@ -222,7 +222,7 @@ function getEndOrder(i) {
                     $('#listendorder').html(html1);
                 },
                 error: function (XMLHttpRequest, textStatus, error) {
-                    alert("RoomInfo数据传输失败！");
+                    alert("得到待评价信息失败！");
                 }
             })
         }
@@ -286,7 +286,7 @@ function getAfterOrder(i) {
             $('#listafterorder').html(html1);
         },
         error: function (XMLHttpRequest, textStatus, error) {
-            alert("RoomInfo数据传输失败！");
+            alert("得到售后信息失败！");
         }
     })
 }
@@ -369,11 +369,11 @@ function getAllHOrder(i) {
             $('#listallhorder').html(html1);
         },
         error: function (XMLHttpRequest, textStatus, error) {
-            alert("RoomInfo数据传输失败！");
+            alert("得到全部数据失败！");
         }
     });
 }
-function getOneTypeHOrder(i,state,id) {
+function getOneTypeHOrder(i,state,id) {               //得到一种状态订单的值
     var formData = new FormData();
     formData.append("page", i);
     formData.append("state", state);
@@ -407,7 +407,7 @@ function getOneTypeHOrder(i,state,id) {
                             "   <div class=\"d-flex flex-row mt-2\" style=\"font-size:14px; color:#666;\">\n" +
                             "   <div class=\"pl-0 pr-3 pt-2 bg-white\">单间</div>\n" +
                             "    <div class=\"pl-3 pr-3 ml-auto\">房价：￥" + newData[i].o_price + "</div>\n" +
-                            "    <div class=\"pl-3 pr-5 ml-auto\">" + "<button class=\"btn btn-default rounded pl-2 pr-2 pt-1 pb-1\"onclick=\"refuseOrder(" + newData[i].o_id + ")\" style=\"background-color:#FFF; color:#39F; border:#39F 1px solid; font-size:12px;\">拒绝</button></div>" +
+                            "    <div class=\"pl-3 pr-5 ml-auto\">" + "<button class=\"btn btn-default rounded pl-2 pr-2 pt-1 pb-1\"onclick=\"refuseOrder(" + newData[i].o_id + ")\" style=\"background-color:#FFF; color:#39F; border:#39F 1px solid; font-size:12px;\">拒绝</button><button class=\"btn btn-default rounded pl-2 pr-2 pt-1 pb-1\"onclick=\"agreeOrder(" + newData[i].o_id + ")\" style=\"background-color:#FFF; color:#39F; border:#39F 1px solid; font-size:12px;\">确认</button></div>" +
                             "    \n" +
                             "    </div>\n" +
                             "    <div>\n" +
@@ -440,7 +440,7 @@ function getOneTypeHOrder(i,state,id) {
                     for (var j =0;j< num;j++){
                         listpage = listpage+
                             "<li class=\"page-item\">\n" +
-                            "\t\t\t\t\t\t<a class=\"page-link\" onclick=\"getOneTypeHOrder("+(j+1)+","+state+")\" href=\"#pingjia\">"+(j+1)+"</a>\n" +
+                            "\t\t\t\t\t\t<a class=\"page-link\" onclick=\"getOneTypeHOrder("+(j+1)+",'"+state+"','"+id+"')\" href=\"#pingjia\">"+(j+1)+"</a>\n" +
                             "\t\t\t\t\t</li>"
                     }
                 }
@@ -454,7 +454,7 @@ function getOneTypeHOrder(i,state,id) {
             $('#'+id+'').html(html1);                   //列出待入住列表
         },
         error: function (XMLHttpRequest, textStatus, error) {
-            alert("RoomInfo数据传输失败！");
+            alert("得到数据失败！"+state);
         }
     })
 }
@@ -475,6 +475,46 @@ function refuseOrder(id) {
         },
         error: function () {
             alert("拒绝失败!!!");
+        }
+    })
+}
+function agreeOrder(id) {
+    var formData = new FormData();
+    formData.append("agreeOrderid", id);
+    $.ajax({
+        type: 'post',        //数据提交的方式
+        url: "/order/agreeOrderById",//数据提交的路径
+        data: formData,
+        cache: false,
+        processData: false,
+        contentType: false,
+        scriptCharset: 'utf-8',
+        success: function () {
+            alert("同意成功！！！");
+            getOneTypeHOrder(1,"已下单","horder1");
+        },
+        error: function () {
+            alert("同意失败!!!");
+        }
+    })
+}
+function querenOrder(id) {
+    var formData = new FormData();
+    formData.append("querenorderid", id);
+    $.ajax({
+        type: 'post',        //数据提交的方式
+        url: "/order/querenOrderById",//数据提交的路径
+        data: formData,
+        cache: false,
+        processData: false,
+        contentType: false,
+        scriptCharset: 'utf-8',
+        success: function () {
+            alert("确认成功！！！");
+            getBookingOrder(1);
+        },
+        error: function () {
+            alert("确认失败!!!");
         }
     })
 }

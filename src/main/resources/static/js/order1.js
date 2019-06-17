@@ -14,6 +14,7 @@ function setOrderUser() {
         data:{name:name,phone:phone},
         success:function () {
             alert("订单添加成功！！！");
+            window.location.href="../html/personal.html";
         },
         error:function(){
            alert("订单添加错误！！！")
@@ -25,8 +26,6 @@ function setOrderRoom() {
     //alert($('#daterangeC').value);
     var price = document.getElementById("price").innerHTML;
     var datec = document.getElementById("daterangeC").innerHTML;
-    alert(price);
-    alert(document.getElementById("daterangeC").innerHTML);
     $.ajax({
         type:"post",
         url:"/order/order_getinfo",
