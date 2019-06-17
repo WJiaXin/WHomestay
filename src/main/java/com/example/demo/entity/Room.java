@@ -12,31 +12,29 @@ public class Room {
     private String R_rule;
     private String R_permit;
     private String R_name;
+    private String R_time;
+    private String state;
 
-    public int getR_id() {
-        return R_id;
+
+    public String getR_name() {
+        return R_name;
+    }
+    public void setR_name(String r_name) {
+        R_name = r_name;
+    }
+    public String getState() {
+        return state;
+    }
+    public void setState(String state) {
+        this.state = state;
+    }
+    public String getR_time() {
+        return R_time;
     }
 
-    public void setR_id(int r_id) {
-        R_id = r_id;
+    public void setR_time(String r_time) {
+        R_time = r_time;
     }
-
-    public int getR_hotel() {
-        return R_hotel;
-    }
-
-    public void setR_hotel(int r_hotel) {
-        R_hotel = r_hotel;
-    }
-
-    public String getR_facilities() {
-        return R_facilities;
-    }
-
-    public void setR_facilities(String r_facilities) {
-        R_facilities = r_facilities;
-    }
-
     public int getR_type() {
         return R_type;
     }
@@ -92,12 +90,42 @@ public class Room {
     public void setR_permit(String r_permit) {
         R_permit = r_permit;
     }
-
-    public String getR_name() {
-        return R_name;
+    public String getR_facilities() {
+        return R_facilities;
     }
 
-    public void setR_name(String r_name) {
-        R_name = r_name;
+    public void setR_facilities(String r_facilities) {
+        R_facilities = r_facilities;
+    }
+
+    public int getR_hotel() {
+        return R_hotel;
+    }
+
+    public void setR_hotel(int r_hotel) {
+        R_hotel = r_hotel;
+    }
+
+    public int getR_id() {
+        return R_id;
+    }
+
+    public void setR_id(int r_id) {
+        R_id = r_id;
+    }
+
+    public Room(int r_id, int r_hotel, String r_facilities, int r_type, int r_price, int r_numPeople, String r_picture, String r_norms, String r_rule, String r_permit) {
+        R_id = r_id;
+        R_hotel = r_hotel;
+        R_facilities = r_facilities;
+        R_type = r_type;
+        R_price = r_price;
+        R_numPeople = r_numPeople;
+        R_picture = r_picture;
+        R_norms = r_norms;
+        R_rule = r_rule;
+        R_permit = r_permit;
+    }
+    public Room(){
     }
 }

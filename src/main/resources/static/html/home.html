@@ -18,6 +18,11 @@
 <script src="http://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/daterangepicker.js"></script>
 </head>
 <body>
+<style>
+.imgfill{
+	object-fit: cover;
+}
+</style>
 <div>
 	<div class="row">
 		<div class="col-md-12 column">
@@ -38,6 +43,25 @@
                         <li>
 						  <a href="# "data-toggle="modal" data-target="#myModal">登陆</a>
 						</li>
+
+						<li class="dropdown" style="display: none;">
+							<a class="dropdown-toggle" data-toggle="dropdown"><img src="../img/test.jpg" height="35px"  width="35px" style="border-radius:20px;"/>  用户昵称</a>
+							<ul class="dropdown-menu">
+								<li><a  href="#">修改资料</a></li>
+								<li><a  href="#">我的消息</a></li>
+						        <li class="divider"></li>
+								<li class="dropdown-header ml-0">我是房客</li>
+								<li><a class="dropdown-item" href="#">我的收藏</a></li>
+								<li><a class="dropdown-item" href="#">我的订单</a></li>
+								<li class="divider"></li>
+								<li class="dropdown-header">我是房东</li>
+								<li><a class="dropdown-item" href="#">我的房源</a></li>
+								<li><a class="dropdown-item" href="#">订单管理</a></li>
+								<li><a class="dropdown-item" href="#">我的点评</a></li>
+								<li><a class="dropdown-item" href="#">收款方式</a></li>
+							</ul>
+						</li>
+
 						<li class="dropdown">
 							 <a href="#" class="dropdown-toggle" data-toggle="dropdown">短租指南<strong class="caret"></strong></a>
 							<ul class="dropdown-menu">
@@ -181,153 +205,15 @@
              <h3 class="text-center" style="font-size:28px; margin-top:15px; margin-bottom:15px;">
 				别住酒店，住我家
 			</h3>
-           <div class="row" style="width:80%; margin-left:10%;">
-				<div class="col-md-3">
-                 <div class="thumbnail">
-              <a href="/room/getRoomId?id=1"><img class="img-responsive" src="../img/room4.jpg" /></a>
 
-            <div class="caption">
-               	<h5>
-								冯诺尔曼结构
-			  </h5>
-                            <span class="label label-default">整套</span>
-                            <span class="label label-default">1居室</span>
-                             <span class="label label-default">地址</span>
-                             <h4 style="color:#F00;">
-                            ￥186
-                            </h4>
-            </div>
-        </div>
-				</div>
+           <div class="row" style="width:80%; margin-left:10%;" id="content">
 
-				<div class="col-md-3">
-                <div class="thumbnail">
-						<img class="img-responsive" src="../img/room3.jpg" />
-                         <div class="caption">
-							<h5>
-								冯诺尔曼结构
-							</h5>
-                            <span class="label label-default">整套</span>
-                            <span class="label label-default">1居室</span>
-                             <span class="label label-default">地址</span>
-                             <h4 style="color:#F00;">
-                            ￥186
-                            </h4>
-                  </div>
-				  </div>
 
-				</div>
-				<div class="col-md-3">
-                 <div class="thumbnail">
-            <img class="img-responsive" src="../img/room2.jpg"
-                 alt="通用的占位符缩略图">
-            <div class="caption">
-               	<h5>
-								冯诺尔曼结构
-			  </h5>
-                            <span class="label label-default">整套</span>
-                            <span class="label label-default">1居室</span>
-                             <span class="label label-default">地址</span>
-                             <h4 style="color:#F00;">
-                            ￥186
-                            </h4>
-            </div>
-        </div>
-				</div>
-               <div class="col-md-3">
-                 <div class="thumbnail">
-           <img class="img-responsive" src="../img/room3.jpg" />
-            <div class="caption">
-               	<h5>
-								冯诺尔曼结构
-			  </h5>
-                            <span class="label label-default">整套</span>
-                            <span class="label label-default">1居室</span>
-                             <span class="label label-default">地址</span>
-                             <h4 style="color:#F00;">
-                            ￥186
-                            </h4>
-            </div>
-        </div>
-			 </div>
 		</div>
-         <div class="row" style="width:80%; margin-left:10%;">
-				<div class="col-md-3">
-                 <div class="thumbnail">
-            <img class="img-responsive" src="../img/room2.jpg"
-                 alt="通用的占位符缩略图">
-            <div class="caption">
-               	<h5>
-								冯诺尔曼结构
-			  </h5>
-                            <span class="label label-default">整套</span>
-                            <span class="label label-default">1居室</span>
-                             <span class="label label-default">地址</span>
-                             <h4 style="color:#F00;">
-                            ￥186
-                            </h4>
-            </div>
-        </div>
-				</div>
-                
-				<div class="col-md-3">
-                <div class="thumbnail">
-						<img class="img-responsive" src="../img/room2.jpg" />
-                         <div class="caption">
-							<h5>
-								冯诺尔曼结构
-							</h5>
-                            <span class="label label-default">整套</span>
-                            <span class="label label-default">1居室</span>
-                             <span class="label label-default">地址</span>
-                             <h4 style="color:#F00;">
-                            ￥186
-                            </h4>
-                  </div>
-				  </div>
-			
-				</div>
-				<div class="col-md-3">
-                 <div class="thumbnail">
-            <img class="img-responsive" src="../img/room3.jpg"
-                 alt="通用的占位符缩略图">
-            <div class="caption">
-               	<h5>
-								冯诺尔曼结构
-			  </h5>
-                            <span class="label label-default">整套</span>
-                            <span class="label label-default">1居室</span>
-                             <span class="label label-default">地址</span>
-                             <h4 style="color:#F00;">
-                            ￥186
-                            </h4>
-            </div>
-        </div>
-				</div>
-               <div class="col-md-3">
-                 <div class="thumbnail">
-                     <img class="img-responsive" src="../img/room3.jpg"
-                          alt="通用的占位符缩略图">
-            <div class="caption">
-               	<h5>
-								冯诺尔曼结构
-			  </h5>
-                            <span class="label label-default">整套</span>
-                            <span class="label label-default">1居室</span>
-                             <span class="label label-default">地址</span>
-                             <h4 style="color:#F00;">
-                            ￥186
-                            </h4>
-            </div>
-        </div>
-		   </div>
-         </div>
-       
-       <div class="jumbotron text-center" style="margin-bottom:0">
-  <p>底部内容</p>
 </div>
-    
-</div>
+		<div class="jumbotron text-center" style="margin-bottom:0">
+			<p>底部内容</p>
+		</div>
 	</div>
 </div>
 </body>

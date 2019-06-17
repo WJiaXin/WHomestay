@@ -5,5 +5,5 @@ import org.springframework.stereotype.Service;
 
 
 public interface UserService {
-    abstract User  selectUserByName(String name);
+    User  selectUserByName(String name);
 }

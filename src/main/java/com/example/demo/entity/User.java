@@ -5,8 +5,6 @@ public class User {
     private String user_name;
     private int user_sex;
 
-
-
     @Override
     public String toString() {
         return "User{" +
