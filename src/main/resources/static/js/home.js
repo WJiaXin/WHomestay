@@ -78,12 +78,13 @@ function init() {
 $(document).ready(function() {
     init();
 });
-$('#cord').click(function () {
+$('#cord').click(function () {                  //验证码更换
     $('#cord').attr('src', "/user/createImg?time=" + new Date().getTime());
 })
 $('#cordZ').click(function () {
     $('#cordZ').attr('src',"/user/createImg?time="+ new Date().getTime());
 })
+
 function register() {
     var formData1 = new FormData();
     formData1.append("user_id", $('#user_id').val());
@@ -157,3 +158,36 @@ function login() {
         })
    // }
 }//登陆处理
+
+$(function () {
+
+    $.ajax({
+        type: 'post',
+        url:"/homestay/home",
+        cache: false,
+        processData: false,
+        contentType: false,
+        success: function (data) {
+            for(i in data){
+                var str="";
+                str+=" <div class=\"col-md-3\">\n" +
+                    "                 <div class=\"thumbnail\">\n" +
+                    "           <img class=\"img-responsive\" src=\"../img/space/"+$.parseJSON(data[i].picture).封面+"\" />\n" +
+                    "            <div class=\"caption\"><h5>"+data[i].h_name+"</h5>";
+                for(j in data[i].roomType){
+                    if(data[i].roomType[j]==0){str+=" <span class=\"label label-default mr-2\">单间</span>";}
+                    else{str+="<span class=\"label label-default mr-2\">整套</span>";}
+                }
+                str+=" <h6>"+$.parseJSON(data[i].h_address).addressName+"</h6>\n" +
+                    "                             <h4 style=\"color:#F00;\">￥"+data[i].price+"起</h4></div></div></div>";
+
+                $('#content').append(str);
+
+            }
+        },
+        error: function (XMLHttpRequest, textStatus, error) {
+            alert(error);
+        }
+    })
+})
+
