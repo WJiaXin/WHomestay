@@ -32,4 +32,16 @@
     <select id="verification" resultType="int">
         select count(*) from user where user_id = #{user_id}
     </select>
+    <update id="upName"  parameterType="com.example.demo.entity.User">
+        update user set user_name= #{user_name}
+        where user_id=#{user_id}
+    </update>
+    <update id="upUserImg"  parameterType="com.example.demo.entity.User">
+        update user set user_picture= #{user_picture}
+        where user_id=#{user_id}
+    </update>
+    <update id="upPwd"  parameterType="com.example.demo.entity.User">
+        update user set user_pwd= #{user_pwd}
+        where user_id=#{user_id}
+    </update>
 </mapper>

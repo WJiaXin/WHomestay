@@ -21,4 +21,13 @@ public class UserServiceImpl implements UserService{
     public int verification(String user_id){
         return userDao.verification(user_id);
     }
+    public void upName(String user_name,String user_id){
+        userDao.upName(user_name,user_id);
+    }
+    public void upUserImg(String user_picture,String user_id){
+        userDao.upUserImg(user_picture,user_id);
+    }
+    public void upPwd(String user_pwd,String user_id){
+        userDao.upPwd(user_pwd,user_id);
+    }
 }

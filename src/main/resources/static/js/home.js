@@ -91,12 +91,9 @@ function register() {
     formData1.append("user_pwd1", $('#user_pwd1').val());
     formData1.append("user_pwd2", $('#user_pwd2').val());
     formData1.append("inputCordZ", $('#inputCordZ').val());
-
-   // if (formData1.get('user_pwd1') != formData1.get('user_pwd2')) {
-   //    alert("两次密码必须相同！");
-   // } else if(formData1.get('user_id')==""){
-       // alert("密码不能为空！");
-   // } else {
+   if (formData1.get('user_pwd1') != formData1.get('user_pwd2')) {
+     alert("两次密码必须相同！");
+    } else {
         $.ajax({
             type: 'post',        //数据提交的方式
             url: "/user/register",//数据提交的路径
@@ -105,21 +102,20 @@ function register() {
             processData: false,
             contentType: false,
             success: function (data) {
-
-                //if(data==0){
-                //    alert("验证码错误！");
-               // }else if(date==1){
-                //    alert("该用户已经注册！");
-               // }else{
+                if(data=='9'){
                     alert("注册成功！");
                     location.reload(true);
-               // }
+               }else if(data=='1'){
+                    alert("验证码输入错误！");
+                }else{
+                    alert("用户已经注册！");
+                }
             },
             error: function (XMLHttpRequest, textStatus, error) {
                 alert("注册失败，请检查是否有选项未填，两次密码是否一致，验证码是否填写正确！");
             }
         })
-  //  }
+   }
 }//注册处理
 function login() {
     var formData = new FormData();
@@ -148,7 +144,7 @@ function login() {
      //           }else{
                     $('#user .dropdown-toggle').html("<img src=\"../img/user/"+json.user_id+"/"+json.user_picture+"\" height=\"35px\"  width=\"35px\" style=\"border-radius:20px;\"/> "+json.user_name);
                     $('#myModal').modal('hide');
-
+                    $('#user_name').html(json.user_name);
                   //  location.reload(true);
                     $('#user').attr('style','display:inline;')
 
