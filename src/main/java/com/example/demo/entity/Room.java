@@ -2,16 +2,16 @@ package com.example.demo.entity;
 
 public class Room {
     private int R_id;
-    private String R_name;
     private int R_hotel;
     private String R_facilities;
     private int R_type;
     private int R_price;
-    private int  R_numPeople;
+    private int R_numPeople;
     private String R_picture;
     private String R_norms;
     private String R_rule;
     private String R_permit;
+    private String R_name;
     private String R_time;
     private String state;
 
@@ -127,6 +127,5 @@ public class Room {
         R_permit = r_permit;
     }
     public Room(){
-
     }
 }
