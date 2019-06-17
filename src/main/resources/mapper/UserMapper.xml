@@ -1,9 +1,47 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.demo.dao.UserDao" >
+    <insert id="insertUser"  parameterType="com.example.demo.entity.User">
+        insert into user
+        (
+        user_id,
+        user_name,
+        user_IDcard,
+        user_sex,
+        user_picture,
+        user_address,
+        user_account,
+        user_pwd
+        )
+        values
+        (
+        #{user_id},
+        #{user_name},
+        #{user_IDcard},
+        #{user_sex},
+        #{user_picture},
+        #{user_address},
+        #{user_account},
+        #{user_pwd}
+        )
 
-    <select id="selectUserByName"  resultType="com.example.demo.entity.User">
-        SELECT * FROM user WHERE user_name = #{name}
+    </insert>
+    <select id="findUserById"  parameterType="map" resultType="com.example.demo.entity.User">
+        select * from user where user_id = #{user_id}
     </select>
-
+    <select id="verification" resultType="int">
+        select count(*) from user where user_id = #{user_id}
+    </select>
+    <update id="upName"  parameterType="com.example.demo.entity.User">
+        update user set user_name= #{user_name}
+        where user_id=#{user_id}
+    </update>
+    <update id="upUserImg"  parameterType="com.example.demo.entity.User">
+        update user set user_picture= #{user_picture}
+        where user_id=#{user_id}
+    </update>
+    <update id="upPwd"  parameterType="com.example.demo.entity.User">
+        update user set user_pwd= #{user_pwd}
+        where user_id=#{user_id}
+    </update>
 </mapper>

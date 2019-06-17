@@ -84,6 +84,81 @@ $('#cord').click(function () {                  //验证码更换
 $('#cordZ').click(function () {
     $('#cordZ').attr('src',"/user/createImg?time="+ new Date().getTime());
 })
+
+function register() {
+    var formData1 = new FormData();
+    formData1.append("user_id", $('#user_id').val());
+    formData1.append("user_name", $('#user_name').val());
+    formData1.append("user_pwd1", $('#user_pwd1').val());
+    formData1.append("user_pwd2", $('#user_pwd2').val());
+    formData1.append("inputCordZ", $('#inputCordZ').val());
+   if (formData1.get('user_pwd1') != formData1.get('user_pwd2')) {
+     alert("两次密码必须相同！");
+    } else {
+        $.ajax({
+            type: 'post',        //数据提交的方式
+            url: "/user/register",//数据提交的路径
+            data: formData1,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                if(data=='9'){
+                    alert("注册成功！");
+                    location.reload(true);
+               }else if(data=='1'){
+                    alert("验证码输入错误！");
+                }else{
+                    alert("用户已经注册！");
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, error) {
+                alert("注册失败，请检查是否有选项未填，两次密码是否一致，验证码是否填写正确！");
+            }
+        })
+   }
+}//注册处理
+function login() {
+    var formData = new FormData();
+    formData.append("inputPhone", $('#inputPhone').val());
+    formData.append("inputPassword", $('#inputPassword').val());
+    formData.append("inputCord1", $('#inputCord1').val());
+
+   //if(formData1.get('inputPhone')==""){
+    //    alert("用户账号不能为空！");
+    //} else {
+        $.ajax({
+            type: 'post',        //数据提交的方式
+            url: "/user/login",//数据提交的路径
+            data: formData,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                var json = eval('(' + data + ')');
+          //      if(data==="0"){
+        //            alert("验证码错误！");
+        //        }else if(date==="1"){
+       //             alert("该用户未注册！");
+     //           }else if(data==="2"){
+     //               alert("密码不正确！");
+     //           }else{
+                    $('#user .dropdown-toggle').html("<img src=\"../img/user/"+json.user_id+"/"+json.user_picture+"\" height=\"35px\"  width=\"35px\" style=\"border-radius:20px;\"/> "+json.user_name);
+                    $('#myModal').modal('hide');
+                    $('#user_name').html(json.user_name);
+                  //  location.reload(true);
+                    $('#user').attr('style','display:inline;')
+
+                },
+           // }
+            error: function (XMLHttpRequest, textStatus, error) {
+                alert("登录失败,请检查用户是否注册，或者密码是否输入正确！");
+
+            }
+        })
+   // }
+}//登陆处理
+
 $(function () {
 
     $.ajax({
@@ -115,3 +190,4 @@ $(function () {
         }
     })
 })
+

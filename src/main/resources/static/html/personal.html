@@ -14,6 +14,8 @@
     <script src="../bootstrap-4.3.1-dist/js/bootstrap.js"></script>
 <script src="http://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/moment.min.js"></script>
 <script src="http://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/daterangepicker.js"></script>
+<script src="../js/personal.js"></script>
+
 
 <style>
 .dropdown:hover .dropdown-menu {
@@ -77,7 +79,7 @@ a:hover{
 				
 					<ul class="navbar-nav ml-md-auto">
                     <li class="nav-item dropdown">
-							 <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown"><img src="../img/test.jpg" height="35px"  width="35px" style="border-radius:20px;"/>  用户昵称</a>
+							 <a class="nav-link dropdown-toggle" href="http://example.com" id="user_namepicture" data-toggle="dropdown"><img src="../img/test.jpg" height="35px"  width="35px" style="border-radius:20px;"/>  用户昵称</a>
 							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
 								 <a class="dropdown-item" href="#">修改资料</a> 
                                  <a class="dropdown-item" href="#">我的消息</a> 
@@ -163,7 +165,7 @@ a:hover{
      
      <div class="d-flex flex-column p-3 m-3 border rounded">
      <div class="pb-3" style="color:#F60; font-weight:bold; border-bottom:solid 1px #CCCCCC;">基本信息</div>
-     <div class="p-4"><span style="color:#999;" class="pr-4">用户名：</span> 昵称 <a class="pl-4" style="color:#F96;" data-toggle="modal" data-target="#myModal">修改</a></div>
+     <div class="p-4"><span style="color:#999;" class="pr-4">用户名：</span> <a id="user_name"  >昵称</a> <a class="pl-4" style="color:#F96;" data-toggle="modal" data-target="#myModal">修改</a></div>
 
          <div class="modal fade" id="myModal">
              <div class="modal-dialog">
@@ -180,15 +182,15 @@ a:hover{
                          </div>
                      </div>
                      <div class="modal-footer">
-                                 <button class="btn btn-default" style="width:100%; background-color: #F90; color:#FFF;">保存</button>
+                                 <button type="button" onclick="upName()" class="btn btn-default" style="width:100%; background-color: #F90; color:#FFF;">保存</button>
                      </div>
 
                  </div>
              </div>
          </div>
 
-     <div class="p-4"><span style="color:#999;" class="pr-4">手机号：</span> 17760486523 </div>
-     <div class="p-4"><span style="color:#999;" class="pr-4">头像：</span><img src="../img/test.jpg" height="50px"  width="50px" class="rounded-circle" id="img"/><a class="pl-4" style="color:#F96;" id="shangchuan">更换</a></div>
+     <div class="p-4"><span style="color:#999;" class="pr-4">手机号：</span> <a id="user_phone"  href = "javascript:getInFo();">17760486523 </a></a></div>
+     <div class="p-4"><span style="color:#999;" class="pr-4">头像：</span><a id="user_picture"  href = "javascript:getInFo();"><img src="../img/test.jpg" height="50px"  width="50px" class="rounded-circle" id="img"/></a><a class="pl-4" style="color:#F96;" id="shangchuan">更换</a></div>
          <input type="file" name="file" id="file" accept="image/*" onchange="pimg('file','img')" hidden/>
          <div class="p-4"><span style="color:#999;" class="pr-4">密码：</span> <a class="pl-4" style="color:#F96;" data-toggle="modal" data-target="#myModalp">修改密码</a></div>
          <div class="modal fade" id="myModalp">
@@ -227,7 +229,7 @@ a:hover{
                              </div>
                      </div>
                      <div class="modal-footer">
-                         <button class="btn btn-default" style="width:100%; background-color: #F90; color:#FFF;">保存</button>
+                         <button type="button" onclick="upPwd()" class="btn btn-default" style="width:100%; background-color: #F90; color:#FFF;">保存</button>
                      </div>
 
                  </div>
@@ -238,15 +240,15 @@ a:hover{
      
      <div class="d-flex flex-column p-3 m-3 border rounded">
       <div class="pb-3" style="color:#F60; font-weight:bold; border-bottom:solid 1px #CCCCCC;">身份信息<span style="color:#CCC; margin-left:16px; font-weight:normal;">仅用于必要的安全环节，其他情况下将为您严格保密</span></div>
-     <div class="p-4"><span style="color:#999;" class="pr-4">真实姓名：</span> 真昵称</div>
-     <div class="p-4"><span style="color:#999;" class="pr-4">身份证号：</span> 513701********4219 </div>
+     <div class="p-4"><span style="color:#999;" class="pr-4">真实姓名：</span> <a id="user_name1"  >昵称</a></div>
+         <div class="p-4"><span style="color:#999;" class="pr-4">身份证号：</span> <a id="user_IDcard"  >513701********4219 </a></div>
      </div>
      
      <div class="d-flex flex-column p-3 m-3 border rounded">
       <div class="pb-3" style="color:#F60; font-weight:bold; border-bottom:solid 1px #CCCCCC;">社交信息</div>
-     <div class="p-4"><span style="color:#999;" class="pr-4">性别：</span> 男 <a class="pl-4" style="color:#F96;">修改</a></div>
-     <div class="p-4"><span style="color:#999;" class="pr-4">年龄：</span> 21   <a class="pl-4" style="color:#F96;">修改</a></div>
-     <div class="p-4"><span style="color:#999;" class="pr-4">所在地：</span>成都</div>
+         <div class="p-4"><span style="color:#999;" class="pr-4">性别：</span> <a id="user_sex"  >男 </a><a class="pl-4" style="color:#F96;">修改</a></div>
+         <div class="p-4"><span style="color:#999;" class="pr-4">年龄：</span> 21   <a class="pl-4" style="color:#F96;">修改</a></div>
+         <div class="p-4"><span style="color:#999;" class="pr-4">所在地：</span><a id="user_address"  >成都</a></div>
      </div>
      
      </div>
@@ -1048,6 +1050,9 @@ a:hover{
 </body>
 
 <script src="../js/personal.js"></script>
+
+<script src="../js/liutong.js"></script>
+
 <script>
     var homestay;
     $(function () {
@@ -1127,4 +1132,5 @@ a:hover{
         window.location.href="Uhomestay.html"
     }
 </script>
+
 </html>
