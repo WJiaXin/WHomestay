@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -107,20 +108,28 @@ public class HomestayController {
             request.getSession().setAttribute("room",room);
         }
     }
+    @RequestMapping(value="/toPersonal")
+    public String toPersonal(HttpServletResponse response, HttpServletRequest request) throws IOException {
+        return "personal";
+    }
     @RequestMapping(value="/getUHomestay")
     @ResponseBody
     public List<Homestay> getUHomestay(HttpServletResponse response, HttpServletRequest request) throws IOException {
         List<Homestay> homestayList=homestayService.findIdHomestay("17738505200");
-        System.out.println("------------价格:"+homestayList.get(1).getPrice());
+        System.out.println(this.getClass().getClassLoader().getResource("").getPath());
         return homestayList;
+    }
+    @RequestMapping(value="/setHRoom")
+    public String setHRoom( HttpServletRequest request,@RequestParam("hid") int hid) throws IOException {
+        request.getSession().setAttribute("hid",hid);
+        return "Uhomestay";
     }
     @RequestMapping(value="/getHRoom")
     @ResponseBody
-    public List<Room> getHRoom(HttpServletResponse response, HttpServletRequest request,@RequestParam("hid") int Hid) throws IOException {
-        System.out.println(Hid);
-        List<Room> roomList=homestayService.findIdRoom(32);
-        System.out.println("------------价格:"+roomList.get(0).getR_price());
-        return roomList;
+    public Homestay getHRoom(HttpServletResponse response, HttpServletRequest request) throws IOException {
+        Homestay homestay=homestayService.findHidHomestay((Integer) request.getSession().getAttribute("hid"));
+        System.out.println("------------价格:"+homestay.getRoom().get(0).getR_name());
+        return homestay;
     }
 
     @RequestMapping(value="/home")
@@ -129,6 +138,39 @@ public class HomestayController {
         List<Homestay> homestayList=homestayService.findAllHomestay();
         System.out.println("------------价格:"+homestayList.get(0).getH_name());
         return homestayList;
+    }
+    @RequestMapping(value="/Rshangjia")
+    @ResponseBody
+    public void Rshangjia(HttpServletRequest request,@RequestParam("rid") int rid){
+       homestayService.setRoomState(rid,"已上线");
+    }
+    @RequestMapping(value="/Rxiajia")
+    @ResponseBody
+    public void Rxiajia(HttpServletRequest request,@RequestParam("rid") int rid){
+homestayService.setRoomState(rid,"已下线");
+    }
+    @RequestMapping(value="/Rshanchu")
+    @ResponseBody
+    public void Rshanchu(HttpServletRequest request,@RequestParam("rid") int rid){
+   homestayService.deleteRoom(rid);
+    }
+    @RequestMapping(value="/Hshangjia")
+    public String Hshangjia(@RequestParam("hid") int hid){
+        System.out.println(hid);
+        homestayService.setHstate(hid,"已上线");
+        return "personal";
+    }
+    @RequestMapping(value="/Hxiajia")
+    public String Hxiajia(@RequestParam("hid") int hid){
+        System.out.println(hid);
+        homestayService.setHstate(hid,"已下线");
+        return "personal";
+    }
+    @RequestMapping(value="/Hshanchu")
+    public String Hshanchu(@RequestParam("hid") int hid){
+        System.out.println(hid);
+        homestayService.deleteHomestay(hid);
+        return "personal";
     }
     @RequestMapping(value="/test")
     public void test(HttpServletResponse response, HttpServletRequest request){

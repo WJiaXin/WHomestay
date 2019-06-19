@@ -14,7 +14,11 @@ public interface HomestayService {
    int setRoomImg(Room room);
    int setRoomPrice(Room room);
    List<Homestay> findIdHomestay(String userid);
+   Homestay findHidHomestay(int hid);
    int setHstate(int H_id,String state);
    List<Room> findIdRoom(int Hid);
    List<Homestay> findAllHomestay();
+   int setRoomState(int rid,String state);
+   int deleteHomestay(int hid);
+   int deleteRoom(int rid);
 }

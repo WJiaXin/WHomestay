@@ -53,4 +53,20 @@ public class HomestayServiceImpl implements HomestayService{
     public List<Homestay> findAllHomestay(){
         return homestayDao.findAllHomestay();
     }
+    @Override
+    public int setRoomState(int rid,String state){
+        return homestayDao.setRoomState(rid,state);
+    }
+    @Override
+    public int deleteHomestay(int hid){
+        return homestayDao.deleteHomestay(hid);
+    }
+    @Override
+    public int deleteRoom(int rid){
+        return homestayDao.deleteRoom(rid);
+    }
+    @Override
+    public Homestay findHidHomestay(int hid){
+        return homestayDao.findHidHomestay(hid);
+    }
 }

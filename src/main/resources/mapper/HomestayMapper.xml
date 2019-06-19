@@ -7,6 +7,8 @@
         </collection>
         <collection column="H_id" property="price" ofType="int" select="selectMinPrice">
         </collection>
+        <collection column="H_id" property="room"  javaType="java.util.List" select="findHidRoom">
+        </collection>
     </resultMap>
     <insert id="setHomestay" parameterType="com.example.demo.entity.Homestay">
       insert into hotel(H_id,H_owner,H_name,H_address,H_rule,H_brief,city,district,picture,type,state,time) values (#{H_id},#{H_owner},#{H_name},#{H_address},#{H_rule},#{H_brief},#{city},#{district},#{picture},#{type},#{state},#{time})
@@ -19,6 +21,9 @@
     </insert>
     <select id="findRoom" resultType="com.example.demo.entity.Room">
         select *from room where R_hotel=#{arg0} and R_time=#{arg1}
+    </select>
+    <select id="findHidRoom" resultType="com.example.demo.entity.Room">
+        select *from room where R_hotel=#{H_id}
     </select>
     <update id="setRoomFacility" parameterType="com.example.demo.entity.Room">
       update room set R_facilities=#{R_facilities} where R_id=#{R_id}
@@ -35,6 +40,9 @@
     <select id="findIdHomestay" resultMap="homestay">
         select *from hotel where H_owner=#{arg0}
     </select>
+    <select id="findHidHomestay" resultMap="homestay">
+        select *from hotel where H_id=#{arg0}
+    </select>
     <select id="selectRoomType" parameterType="int" resultType="int">
         SELECT DISTINCT R_type FROM room WHERE R_hotel=#{H_id}
     </select>
@@ -47,4 +55,13 @@
     <select id="findAllHomestay" resultMap="homestay">           /*人气民宿 */
         select *from hotel where state='已上线' order by renqi  limit 8
     </select>
+    <update id="setRoomState">
+      update room set state=#{arg1} where R_id=#{arg0}
+    </update>
+    <delete id="deleteHomestay">
+       delete *from hotel where H_id=#{arg0}
+    </delete>
+    <delete id="deleteRoom">
+       delete *from room where R_id=#{arg0}
+    </delete>
 </mapper>
