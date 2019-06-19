@@ -14,6 +14,8 @@
     <script src="../bootstrap-4.3.1-dist/js/bootstrap.js"></script>
 <script src="http://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/moment.min.js"></script>
 <script src="http://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/daterangepicker.js"></script>
+<script src="../js/personal.js"></script>
+
 
 <style>
 .dropdown:hover .dropdown-menu {
@@ -77,7 +79,7 @@ a:hover{
 				
 					<ul class="navbar-nav ml-md-auto">
                     <li class="nav-item dropdown">
-							 <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown"><img src="../img/test.jpg" height="35px"  width="35px" style="border-radius:20px;"/>  用户昵称</a>
+							 <a class="nav-link dropdown-toggle" href="http://example.com" id="user_namepicture" data-toggle="dropdown"><img src="../img/test.jpg" height="35px"  width="35px" style="border-radius:20px;"/>  用户昵称</a>
 							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
 								 <a class="dropdown-item" href="#">修改资料</a> 
                                  <a class="dropdown-item" href="#">我的消息</a> 
@@ -134,7 +136,7 @@ a:hover{
     </li>
  <div class="p-2 align-self-auto  border-top" style="color:#333; font-size:14px; font-weight:bolder;">房东中心</div>
     <li class="nav-item">
-      <a class="nav-link rounded-0" data-toggle="pill" href="#dingdan1"><i class="iconfont icon-icon-"></i> 订单管理</a>
+      <a class="nav-link rounded-0" data-toggle="pill"  onclick="getAllHOrder(1)" href="#dingdan1"><i class="iconfont icon-icon-"></i> 订单管理</a>
     </li>
     <li class="nav-item">
       <a class="nav-link rounded-0" data-toggle="pill" href="#fangyuan"><i class="iconfont icon-fangyuan"></i> 我的房源</a>
@@ -151,7 +153,7 @@ a:hover{
       <a class="nav-link rounded-0" data-toggle="pill" href="#shoucang"><i class="iconfont icon-shoucang"></i> 我的收藏</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link rounded-0" data-toggle="pill" href="#dingdan2"><i class="iconfont icon-icon-"></i> 我的订单</a>
+      <a class="nav-link rounded-0" data-toggle="pill" onclick="getAllOrder(1)" href="#dingdan2" ><i class="iconfont icon-icon-"></i> 我的订单</a>
     </li>
   </ul>
   </div>
@@ -163,7 +165,7 @@ a:hover{
      
      <div class="d-flex flex-column p-3 m-3 border rounded">
      <div class="pb-3" style="color:#F60; font-weight:bold; border-bottom:solid 1px #CCCCCC;">基本信息</div>
-     <div class="p-4"><span style="color:#999;" class="pr-4">用户名：</span> 昵称 <a class="pl-4" style="color:#F96;" data-toggle="modal" data-target="#myModal">修改</a></div>
+     <div class="p-4"><span style="color:#999;" class="pr-4">用户名：</span> <a id="user_name"  >昵称</a> <a class="pl-4" style="color:#F96;" data-toggle="modal" data-target="#myModal">修改</a></div>
 
          <div class="modal fade" id="myModal">
              <div class="modal-dialog">
@@ -180,15 +182,15 @@ a:hover{
                          </div>
                      </div>
                      <div class="modal-footer">
-                                 <button class="btn btn-default" style="width:100%; background-color: #F90; color:#FFF;">保存</button>
+                                 <button type="button" onclick="upName()" class="btn btn-default" style="width:100%; background-color: #F90; color:#FFF;">保存</button>
                      </div>
 
                  </div>
              </div>
          </div>
 
-     <div class="p-4"><span style="color:#999;" class="pr-4">手机号：</span> 17760486523 </div>
-     <div class="p-4"><span style="color:#999;" class="pr-4">头像：</span><img src="../img/test.jpg" height="50px"  width="50px" class="rounded-circle" id="img"/><a class="pl-4" style="color:#F96;" id="shangchuan">更换</a></div>
+     <div class="p-4"><span style="color:#999;" class="pr-4">手机号：</span> <a id="user_phone"  href = "javascript:getInFo();">17760486523 </a></a></div>
+     <div class="p-4"><span style="color:#999;" class="pr-4">头像：</span><a id="user_picture"  href = "javascript:getInFo();"><img src="../img/test.jpg" height="50px"  width="50px" class="rounded-circle" id="img"/></a><a class="pl-4" style="color:#F96;" id="shangchuan">更换</a></div>
          <input type="file" name="file" id="file" accept="image/*" onchange="pimg('file','img')" hidden/>
          <div class="p-4"><span style="color:#999;" class="pr-4">密码：</span> <a class="pl-4" style="color:#F96;" data-toggle="modal" data-target="#myModalp">修改密码</a></div>
          <div class="modal fade" id="myModalp">
@@ -227,7 +229,7 @@ a:hover{
                              </div>
                      </div>
                      <div class="modal-footer">
-                         <button class="btn btn-default" style="width:100%; background-color: #F90; color:#FFF;">保存</button>
+                         <button type="button" onclick="upPwd()" class="btn btn-default" style="width:100%; background-color: #F90; color:#FFF;">保存</button>
                      </div>
 
                  </div>
@@ -238,15 +240,15 @@ a:hover{
      
      <div class="d-flex flex-column p-3 m-3 border rounded">
       <div class="pb-3" style="color:#F60; font-weight:bold; border-bottom:solid 1px #CCCCCC;">身份信息<span style="color:#CCC; margin-left:16px; font-weight:normal;">仅用于必要的安全环节，其他情况下将为您严格保密</span></div>
-     <div class="p-4"><span style="color:#999;" class="pr-4">真实姓名：</span> 真昵称</div>
-     <div class="p-4"><span style="color:#999;" class="pr-4">身份证号：</span> 513701********4219 </div>
+     <div class="p-4"><span style="color:#999;" class="pr-4">真实姓名：</span> <a id="user_name1"  >昵称</a></div>
+         <div class="p-4"><span style="color:#999;" class="pr-4">身份证号：</span> <a id="user_IDcard"  >513701********4219 </a></div>
      </div>
      
      <div class="d-flex flex-column p-3 m-3 border rounded">
       <div class="pb-3" style="color:#F60; font-weight:bold; border-bottom:solid 1px #CCCCCC;">社交信息</div>
-     <div class="p-4"><span style="color:#999;" class="pr-4">性别：</span> 男 <a class="pl-4" style="color:#F96;">修改</a></div>
-     <div class="p-4"><span style="color:#999;" class="pr-4">年龄：</span> 21   <a class="pl-4" style="color:#F96;">修改</a></div>
-     <div class="p-4"><span style="color:#999;" class="pr-4">所在地：</span>成都</div>
+         <div class="p-4"><span style="color:#999;" class="pr-4">性别：</span> <a id="user_sex"  >男 </a><a class="pl-4" style="color:#F96;">修改</a></div>
+         <div class="p-4"><span style="color:#999;" class="pr-4">年龄：</span> 21   <a class="pl-4" style="color:#F96;">修改</a></div>
+         <div class="p-4"><span style="color:#999;" class="pr-4">所在地：</span><a id="user_address"  >成都</a></div>
      </div>
      
      </div>
@@ -262,29 +264,29 @@ a:hover{
     <div class="border-bottom p-0">
     <ul class="nav nav-pillh" role="tablist">
     <li class="nav-item rounded-0">
-      <a class="nav-link active rounded-0" data-toggle="pill" href="#quanbu">全部</a>
+      <a class="nav-link active rounded-0" data-toggle="pill" onclick="getAllHOrder(1)" href="#quanbu" >全部</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link rounded-0" data-toggle="pill" href="#druzhu">待入住</a>
+      <a class="nav-link rounded-0" data-toggle="pill" onclick="getOneTypeHOrder(1,'已下单','horder1')" href="#druzhu">待入住</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link rounded-0" data-toggle="pill" href="#ruzhuz">入住中</a>
+      <a class="nav-link rounded-0" data-toggle="pill" onclick="getOneTypeHOrder(1,'已预订','horder2')" href="#ruzhuz">入住中</a>
     </li>
      <li class="nav-item">
-      <a class="nav-link rounded-0" data-toggle="pill" href="#wancheng">已完成</a>
+      <a class="nav-link rounded-0" data-toggle="pill" onclick="getOneTypeHOrder(1,'已完成','horder3')" href="#wancheng">已完成</a>
     </li>
      <li class="nav-item">
-      <a class="nav-link rounded-0" data-toggle="pill" href="#quxiao">已取消</a>
+      <a class="nav-link rounded-0" data-toggle="pill" onclick="getOneTypeHOrder(1,'已取消','horder4')" href="#quxiao">已取消</a>
     </li>
      <li class="nav-item">
-      <a class="nav-link rounded-0" data-toggle="pill" href="#jujue">已拒绝</a>
+      <a class="nav-link rounded-0" data-toggle="pill"onclick="getOneTypeHOrder(1,'已退款','horder5')" href="#jujue">已拒绝</a>
     </li>
   </ul>
      </div>
   <!-- Tab panes -->
   <div class="tab-content">
     <div id="quanbu" class="container tab-pane active h-100 p-0">
-     <div class="d-flex flex-column">
+     <div id="listallhorder" class="d-flex flex-column">
      
    <div class="media bg-white mt-3 mb-3 p-3 border rounded">
   <img src="../img/room3.jpg" alt="John Doe" class="mr-3 mt-3 rounded" style="width:130px; height:90px;">
@@ -303,74 +305,7 @@ a:hover{
     </div>
   </div>
 </div>
- <div class="media bg-white mt-3 mb-3 p-3 border rounded">
-  <img src="../img/room3.jpg" alt="John Doe" class="mr-3 mt-3 rounded" style="width:130px; height:90px;">
-  <div class="media-body bg-white pt-3 d-flex flex-column-reverse" >
-   <div class="mt-2" style="font-size:12px;">
-   2019-5-19 至 2019-5-20
-   </div>
-   <div class="d-flex flex-row mt-2" style="font-size:14px; color:#666;">
-   <div class="pl-0 pr-3 pt-2 bg-white">单间</div>
-    <div class="pl-3 pr-3 ml-auto">房价：￥200</div>
-    <div class="pl-3 pr-5 ml-auto">入住中</div>
-    
-    </div>
-    <div>
-   <h5>熊先生摄影民宿2-石路中</h5>
-    </div>
-  </div>
-</div>
- <div class="media bg-white mt-3 mb-3 p-3 border rounded">
-  <img src="../img/room3.jpg" alt="John Doe" class="mr-3 mt-3 rounded" style="width:130px; height:90px;">
-  <div class="media-body bg-white pt-3 d-flex flex-column-reverse" >
-   <div class="mt-2" style="font-size:12px;">
-   2019-5-19 至 2019-5-20
-   </div>
-   <div class="d-flex flex-row mt-2" style="font-size:14px; color:#666;">
-   <div class="pl-0 pr-3 pt-2 bg-white">单间</div>
-    <div class="pl-3 pr-3 ml-auto">房价：￥200</div>
-    <div class="pl-3 pr-5 ml-auto">已完成</div>
-    
-    </div>
-    <div>
-   <h5>熊先生摄影民宿2-石路中</h5>
-    </div>
-  </div>
-</div>
- <div class="media bg-white mt-3 mb-3 p-3 border rounded">
-  <img src="../img/room3.jpg" alt="John Doe" class="mr-3 mt-3 rounded" style="width:130px; height:90px;">
-  <div class="media-body bg-white pt-3 d-flex flex-column-reverse" >
-   <div class="mt-2" style="font-size:12px;">
-   2019-5-19 至 2019-5-20
-   </div>
-   <div class="d-flex flex-row mt-2" style="font-size:14px; color:#666;">
-   <div class="pl-0 pr-3 pt-2 bg-white">单间</div>
-    <div class="pl-3 pr-3 ml-auto">房价：￥200</div>
-    <div class="pl-3 pr-5 ml-auto">已取消</div>
-    
-    </div>
-    <div>
-    <h5>熊先生摄影民宿2-石路中</h5>
-    </div>
-  </div>
-</div>
- <div class="media bg-white mt-3 mb-3 p-3 border rounded">
-  <img src="../img/room3.jpg" alt="John Doe" class="mr-3 mt-3 rounded" style="width:130px; height:90px;">
-  <div class="media-body bg-white pt-3 d-flex flex-column-reverse" >
-   <div class="mt-2" style="font-size:12px;">
-   2019-5-19 至 2019-5-20
-   </div>
-   <div class="d-flex flex-row mt-2" style="font-size:14px; color:#666;">
-   <div class="pl-0 pr-3 pt-2 bg-white">单间</div>
-    <div class="pl-3 pr-3 ml-auto">房价：￥200</div>
-    <div class="pl-3 pr-5 ml-auto">已拒绝</div>
-    
-    </div>
-    <div>
-   <h5>熊先生摄影民宿2-石路中</h5>
-    </div>
-  </div>
-</div>
+
 <div class="bg-white m-4 align-self-end" style="font-size:16px;">
 				<nav>
 				<ul class="pagination">
@@ -401,7 +336,7 @@ a:hover{
 </div>
     </div>
     <div id="druzhu" class="container tab-pane fade h-100"><!--待入住 -->
-     <div class="d-flex flex-column"> 
+     <div id="horder1" class="d-flex flex-column">
      
    <div class="media bg-white mt-3 mb-3 p-3 border rounded"><!--订单 -->
   <img src="../img/room3.jpg" alt="John Doe" class="mr-3 mt-3 rounded" style="width:130px; height:90px;">
@@ -451,7 +386,7 @@ a:hover{
     </div>
     
     <div id="ruzhuz" class="container tab-pane fade h-100"><!--入住中 -->
-      <div class="d-flex flex-column"> 
+      <div id="horder2" class="d-flex flex-column">
       
    <div class="media bg-white mt-3 mb-3 p-3 border rounded"><!--订单 -->
   <img src="../img/room3.jpg" alt="John Doe" class="mr-3 mt-3 rounded" style="width:130px; height:90px;">
@@ -501,7 +436,7 @@ a:hover{
     </div>
     
      <div id="wancheng" class="container tab-pane fade h-100"><!--已完成 -->
-       <div class="d-flex flex-column"> 
+       <div id="horder3" class="d-flex flex-column">
        
    <div class="media bg-white mt-3 mb-3 p-3 border rounded"><!--订单 -->
   <img src="../img/room3.jpg" alt="John Doe" class="mr-3 mt-3 rounded" style="width:130px; height:90px;">
@@ -551,7 +486,7 @@ a:hover{
     </div>
     
     <div id="quxiao" class="container tab-pane fade h-100"><!--已取消 -->
-       <div class="d-flex flex-column"> 
+       <div id="horder4" class="d-flex flex-column">
        
    <div class="media bg-white mt-3 mb-3 p-3 border rounded"><!--订单 -->
   <img src="../img/room3.jpg" alt="John Doe" class="mr-3 mt-3 rounded" style="width:130px; height:90px;">
@@ -601,7 +536,7 @@ a:hover{
     </div>
     
     <div id="jujue" class="container tab-pane fade h-100"><!--已拒绝 -->
-       <div class="d-flex flex-column"> 
+       <div id="horder5" class="d-flex flex-column">
        
    <div class="media bg-white mt-3 mb-3 p-3 border rounded"><!--订单 -->
   <img src="../img/room3.jpg" alt="John Doe" class="mr-3 mt-3 rounded" style="width:130px; height:90px;">
@@ -862,25 +797,25 @@ a:hover{
     <div class="border-bottom p-0">
     <ul class="nav nav-pillh" role="tablist">
     <li class="nav-item rounded-0">
-      <a class="nav-link active rounded-0" data-toggle="pill" href="#quanbu2">全部</a>
+      <a class="nav-link active rounded-0" data-toggle="pill" onclick="getAllOrder(1)" href="#quanbu2">全部</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link rounded-0" data-toggle="pill" href="#xiadan">已下单</a>
+      <a class="nav-link rounded-0" data-toggle="pill" onclick="getBookingOrder(1)" href="#xiadan">已下单</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link rounded-0" data-toggle="pill" href="#pingjia">待评价</a>
+      <a class="nav-link rounded-0" data-toggle="pill"onclick="getEndOrder(1)" href="#pingjia">待评价</a>
     </li>
      <li class="nav-item">
-      <a class="nav-link rounded-0" data-toggle="pill" href="#shouhou">退款/售后</a>
+      <a class="nav-link rounded-0" data-toggle="pill" onclick="getAfterOrder(1)" href="#shouhou">退款/售后</a>
     </li>
   </ul>
      </div>
   <!-- Tab panes -->
   <div class="tab-content">
     <div id="quanbu2" class="container tab-pane active h-100 p-0"><br>
-     <div class="d-flex flex-column">
+     <div id="listallorder" class="d-flex flex-column">
      
-   <div class="media bg-white mt-3 mb-3 p-3 border rounded">
+   <div    class="media bg-white mt-3 mb-3 p-3 border rounded">
   <img src="../img/room3.jpg" alt="John Doe" class="mr-3 mt-3 rounded" style="width:130px; height:90px;">
   <div class="media-body bg-white pt-3 d-flex flex-column-reverse" >
    <div class="mt-2" style="font-size:12px;">
@@ -897,78 +832,9 @@ a:hover{
     </div>
   </div>
 </div>
- <div class="media bg-white mt-3 mb-3 p-3 border rounded">
-  <img src="../img/room3.jpg" alt="John Doe" class="mr-3 mt-3 rounded" style="width:130px; height:90px;">
-  <div class="media-body bg-white pt-3 d-flex flex-column-reverse" >
-   <div class="mt-2" style="font-size:12px;">
-   2019-5-19 至 2019-5-20
-   </div>
-   <div class="d-flex flex-row mt-2" style="font-size:14px; color:#666;">
-   <div class="pl-0 pr-3 pt-2 bg-white">单间</div>
-    <div class="pl-3 pr-3 ml-auto">房价：￥200</div>
-    <div class="pl-3 pr-5 ml-auto"><button class="btn btn-default rounded pl-2 pr-2 pt-1 pb-1"  style="background-color:#FFF; color:#39F; border:#39F 1px solid; font-size:12px;">待评价</button></div>
-    
-    </div>
-    <div>
-    <h5>熊先生摄影民宿2-石路中</h5>
-    </div>
-  </div>
-</div>
- <div class="media bg-white mt-3 mb-3 p-3 border rounded">
-  <img src="../img/room3.jpg" alt="John Doe" class="mr-3 mt-3 rounded" style="width:130px; height:90px;">
-  <div class="media-body bg-white pt-3 d-flex flex-column-reverse" >
-   <div class="mt-2" style="font-size:12px;">
-   2019-5-19 至 2019-5-20
-   </div>
-   <div class="d-flex flex-row mt-2" style="font-size:14px; color:#666;">
-   <div class="pl-0 pr-3 pt-2 bg-white">单间</div>
-    <div class="pl-3 pr-3 ml-auto">房价：￥200</div>
-    <div class="pl-3 pr-5 ml-auto">已消费</div>
-    
-    </div>
-    <div>
-    <h5>熊先生摄影民宿2-石路中</h5>
-    </div>
-  </div>
-</div>
- <div class="media bg-white mt-3 mb-3 p-3 border rounded">
-  <img src="../img/room3.jpg" alt="John Doe" class="mr-3 mt-3 rounded" style="width:130px; height:90px;">
-  <div class="media-body bg-white pt-3 d-flex flex-column-reverse" >
-   <div class="mt-2" style="font-size:12px;">
-   2019-5-19 至 2019-5-20
-   </div>
-   <div class="d-flex flex-row mt-2" style="font-size:14px; color:#666;">
-   <div class="pl-0 pr-3 pt-2 bg-white">单间</div>
-    <div class="pl-3 pr-3 ml-auto">房价：￥200</div>
-    <div class="pl-3 pr-5 ml-auto">已取消</div>
-    
-    </div>
-    <div>
-    <h5>熊先生摄影民宿2-石路中</h5>
-    </div>
-  </div>
-</div>
- <div class="media bg-white mt-3 mb-3 p-3 border rounded">
-  <img src="../img/room3.jpg" alt="John Doe" class="mr-3 mt-3 rounded" style="width:130px; height:90px;">
-  <div class="media-body bg-white pt-3 d-flex flex-column-reverse" >
-   <div class="mt-2" style="font-size:12px;">
-   2019-5-19 至 2019-5-20
-   </div>
-   <div class="d-flex flex-row mt-2" style="font-size:14px; color:#666;">
-   <div class="pl-0 pr-3 pt-2 bg-white">单间</div>
-    <div class="pl-3 pr-3 ml-auto">房价：￥200</div>
-    <div class="pl-3 pr-5 ml-auto">已拒绝</div>
-    
-    </div>
-    <div>
-    <h5>熊先生摄影民宿2-石路中</h5>
-    </div>
-  </div>
-</div>
-
 <div class="bg-white m-4 align-self-end" style="font-size:16px;">
 				<nav>
-				<ul class="pagination">
+				<ul id="allorderpagenum" class="pagination">
 					<li class="page-item">
 						<a class="page-link" href="#"><</a>
 					</li>
@@ -998,7 +864,7 @@ a:hover{
     
     
     <div id="xiadan" class="container tab-pane fade h-100"><!--已下单 -->
-     <div class="d-flex flex-column"> 
+     <div id="listbookingorder" class="d-flex flex-column">
      
    <div class="media bg-white mt-3 mb-3 p-3 border rounded"><!--订单 -->
   <img src="../img/room3.jpg" alt="John Doe" class="mr-3 mt-3 rounded" style="width:130px; height:90px;">
@@ -1025,7 +891,7 @@ a:hover{
 						<a class="page-link" href="#"><</a>
 					</li>
 					<li class="page-item">
-						<a class="page-link" href="#">1</a>
+						<a class="page-link" onclick="getAllOrder(1)" href="#quanbu2">1</a>
 					</li>
 					<li class="page-item">
 						<a class="page-link" href="#">2</a>
@@ -1049,7 +915,7 @@ a:hover{
     </div>
     
     <div id="pingjia" class="container tab-pane fade h-100"><!--待评价 -->
-     <div class="d-flex flex-column"> 
+     <div  id="listendorder" class="d-flex flex-column">
      
    <div class="media bg-white mt-3 mb-3 p-3 border rounded"><!--订单 -->
   <img src="../img/room3.jpg" alt="John Doe" class="mr-3 mt-3 rounded" style="width:130px; height:90px;">
@@ -1100,7 +966,7 @@ a:hover{
     </div>
     
     <div id="shouhou" class="container tab-pane fade h-100"><!--售后 -->
-     <div class="d-flex flex-column"> 
+     <div  id="listafterorder" class="d-flex flex-column">
      
    <div class="media bg-white mt-3 mb-3 p-3 border rounded"><!--订单 -->
   <img src="../img/room3.jpg" alt="John Doe" class="mr-3 mt-3 rounded" style="width:130px; height:90px;">
@@ -1182,7 +1048,11 @@ a:hover{
 </div>
 </div>
 </body>
+
 <script src="../js/personal.js"></script>
+
+<script src="../js/liutong.js"></script>
+
 <script>
     var homestay;
     $(function () {
@@ -1262,4 +1132,5 @@ a:hover{
         window.location.href="/homestay/setHRoom?hid="+JSON.stringify(homestay[i].h_id)
     }
 </script>
+
 </html>
