@@ -57,7 +57,7 @@ public class ImgPush {
     @RequestMapping(value = "/dimg")                       //删除图片
     public void dimg(HttpServletResponse httpServletResponse,@RequestParam("img") String img) throws IOException {
         System.out.println(img);
-        Files.delete(new File(URLDecoder.decode(this.getClass().getClassLoader().getResource("").getPath())+"/static/img/space").toPath());
+        Files.delete(new File(URLDecoder.decode(this.getClass().getClassLoader().getResource("").getPath())+"/static/img/space/"+img).toPath());
 
     }
 
