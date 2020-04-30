@@ -54,7 +54,7 @@ public class OrderController {
         String stime = (String)session.getAttribute("stime");
         String etimr = (String)session.getAttribute("etime");
         Order order = new Order();
-        order.setO_user(1);
+        order.setO_user("1");
         order.setO_name(name);
         order.setO_phone(phone);
         order.setO_price(price);
@@ -288,7 +288,7 @@ public class OrderController {
         if(page>1){
             star=(page-1)*5 ;
         }
-        int ordernum = orderService.getAllOrderForHNum(1);
+        int ordernum = orderService.getAllOrderForHNum("1");
         int num=0;
         if(ordernum%5==0){
             num=ordernum/5;
@@ -296,7 +296,7 @@ public class OrderController {
             num=ordernum/5+1;
         }
         System.out.println("房主全部订单页数："+num);
-        List<Map<String, Object>> sqlresult= orderService.getAllOrderForH(1,star);
+        List<Map<String, Object>> sqlresult= orderService.getAllOrderForH("1",star);
         List<JSONObject> allorder = getAllInfo(sqlresult);
         Map<String ,JSONObject> map = new HashMap<String, JSONObject>() ;
         for(int i = 0;i<allorder.size();i++){
@@ -323,7 +323,7 @@ public class OrderController {
         if(page>1){
             star=(page-1)*5;
         }
-        int ordernum = orderService.getOneTypeOrderNum(1,state);
+        int ordernum = orderService.getOneTypeOrderNum("1",state);
         int num=0;
         if(ordernum%5==0){
             num=ordernum/5;
@@ -331,7 +331,7 @@ public class OrderController {
             num=ordernum/5+1;
         }
         System.out.println("一种的订单页数："+num);
-        List<Map<String, Object>> sqlresul = orderService.getOneTypeOrder(1,state,star);
+        List<Map<String, Object>> sqlresul = orderService.getOneTypeOrder("1",state,star);
         List<JSONObject> allorder = getAllInfo(sqlresul);
         Map<String ,JSONObject> map = new HashMap<String, JSONObject>() ;
         for(int i = 0;i<allorder.size();i++){

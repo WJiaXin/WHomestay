@@ -78,13 +78,12 @@ function init() {
 $(document).ready(function() {
     init();
 });
-$('#cord').click(function () {                  //验证码更换
+$('#cord').click(function () {
     $('#cord').attr('src', "/user/createImg?time=" + new Date().getTime());
 })
 $('#cordZ').click(function () {
     $('#cordZ').attr('src',"/user/createImg?time="+ new Date().getTime());
 })
-
 function register() {
     var formData1 = new FormData();
     formData1.append("user_id", $('#user_id').val());
@@ -157,7 +156,9 @@ function login() {
             }
         })
    // }
+
 }//登陆处理
+
 
 $(function () {
 
@@ -180,7 +181,7 @@ $(function () {
                 }
                 str+=" <h6>"+$.parseJSON(data[i].h_address).addressName+"</h6>\n" +
                     "                             <h4 style=\"color:#F00;\">￥"+data[i].price+"起</h4></div></div></div>";
-
+                alert(str);
                 $('#content').append(str);
 
             }
@@ -210,3 +211,4 @@ function search() {
         }
     })
 }
+
