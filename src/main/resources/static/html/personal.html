@@ -7,7 +7,7 @@
  <link href="../bootstrap-4.3.1-dist/css/bootstrap.css" rel="stylesheet" type="text/css">
       <link href="http://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/daterangepicker.css" rel="stylesheet">
      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-<link href="http://at.alicdn.com/t/font_1216890_qzybqurnaol.css"  rel="stylesheet">
+<link href="http://at.alicdn.com/t/font_1216890_suhtm24x25.css"  rel="stylesheet">
 
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="http://code.changer.hk/jquery/plugins/jquery.cookie.js"></script>
@@ -98,7 +98,7 @@ a:hover{
 							</div>
 						</li>
 						<li class="nav-item active">
-							 <a class="nav-link" href="#"> <button class="btn btn-default" style="background-color: #F60; color:#FFF;">发布房源</button></a>
+							 <a class="nav-link" href="#"> <button class="btn btn-default" style="background-color: #F60; color:#FFF;" onclick="javascript:window.location.href='addHomestay.html'">发布房源</button></a>
 						</li>
 						
 					</ul>
@@ -255,8 +255,35 @@ a:hover{
     </div>
     
     <div id="xiaoxi" class="container tab-pane fade h-100"><br>
-      <h3>消息</h3>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <div class="d-flex flex-column m-2">
+
+      <div class="d-inline-flex pt-3 pb-3 border-bottom" >
+      <div>
+     <img src="../img/test.jpg" height="80px"  width="80px" class="rounded-circle" />
+      </div>
+
+      <div class="ml-3">
+      <div style="font-size:13px;">昵称</div>
+      <div>消息</div>
+      <div class="text-gray9" style="font-size:13px;">地址</div>
+      </div>
+      <div class="align-self-center" style="color:#F60;">共有3条消息 <i class="iconfont icon-jiantou-copy"></i></div>
+      </div>
+
+       <div class="d-inline-flex pt-3 pb-3 border-bottom" >
+      <div>
+     <img src="../img/test.jpg" height="80px"  width="80px" class="rounded-circle" />
+      </div>
+
+      <div class="ml-3">
+      <div style="font-size:13px;">昵称</div>
+      <div>消息</div>
+      <div class="text-gray9" style="font-size:13px;">地址</div>
+      </div>
+      <div class="align-self-center" style="color:#F60;">共有3条消息 <i class="iconfont icon-jiantou-copy"></i></div>
+      </div>
+
+    </div>
     </div>
     
     <div id="dingdan1" class="container tab-pane fade flex-column h-100" >
@@ -926,7 +953,7 @@ a:hover{
    <div class="d-flex flex-row mt-2" style="font-size:14px; color:#666;">
    <div class="pl-0 pr-3 pt-2 bg-white">单间</div>
     <div class="pl-3 pr-3 ml-auto">房价：￥200</div>
-    <div class="pl-3 pr-5 ml-auto"><button class="btn btn-default rounded pl-2 pr-2 pt-1 pb-1"  style="background-color:#FFF; color:#39F; border:#39F 1px solid; font-size:12px;">待评价</button></div>
+    <div class="pl-3 pr-5 ml-auto"><button class="btn btn-default rounded pl-2 pr-2 pt-1 pb-1"  style="background-color:#FFF; color:#39F; border:#39F 1px solid; font-size:12px;" onclick="javascript:window.location.href='comment.html'">待评价</button></div>
     
     </div>
     <div>

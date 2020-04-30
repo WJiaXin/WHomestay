@@ -62,7 +62,7 @@ public class Homestay {
     }
 
     public User getUser() {
-        return user;
+        return this.user;
     }
 
     public void setUser(User user) {
@@ -70,29 +70,29 @@ public class Homestay {
     }
 
     public List<Integer> getRoomType() {
-        return roomType;
+        return this.roomType;
     }
     public void setRoomType(List<Integer> roomType) {
         this.roomType = roomType;
     }
     public String getTime() {
-        return time;
+        return this.time;
     }
     public void setTime(String time) {
         this.time = time;
     }
     public Homestay(int h_id, String h_owner, String h_name, String h_address, String h_rule, String h_brief, float h_score1, float h_score2, float h_score3, float h_score4, float h_allscore, String picture, String city, String district, int price, int renqi, String type, List<Room> room) {
-        H_id = h_id;
-        H_owner = h_owner;
-        H_name = h_name;
-        H_address = h_address;
-        H_rule = h_rule;
-        H_brief = h_brief;
-        H_score1 = h_score1;
-        H_score2 = h_score2;
-        H_score3 = h_score3;
-        H_score4 = h_score4;
-        H_allscore = h_allscore;
+        this.H_id = h_id;
+        this.H_owner = h_owner;
+        this.H_name = h_name;
+        this.H_address = h_address;
+        this.H_rule = h_rule;
+        this.H_brief = h_brief;
+        this.H_score1 = h_score1;
+        this.H_score2 = h_score2;
+        this.H_score3 = h_score3;
+        this.H_score4 = h_score4;
+        this.H_allscore = h_allscore;
         this.picture = picture;
         this.city = city;
         this.district = district;
@@ -134,87 +134,87 @@ public class Homestay {
     }
 
     public int getH_id() {
-        return H_id;
+        return this.H_id;
     }
 
     public void setH_id(int h_id) {
-        H_id = h_id;
+        this.H_id = h_id;
     }
 
     public String getH_owner() {
-        return H_owner;
+        return this.H_owner;
     }
 
     public void setH_owner(String h_owner) {
-        H_owner = h_owner;
+        this.H_owner = h_owner;
     }
 
     public String getH_name() {
-        return H_name;
+        return this.H_name;
     }
 
     public void setH_name(String h_name) {
-        H_name = h_name;
+        this.H_name = h_name;
     }
 
     public String getH_address() {
-        return H_address;
+        return this.H_address;
     }
 
     public void setH_address(String h_address) {
-        H_address = h_address;
+        this.H_address = h_address;
     }
 
     public String getH_rule() {
-        return H_rule;
+        return this.H_rule;
     }
 
     public void setH_rule(String h_rule) {
-        H_rule = h_rule;
+        this.H_rule = h_rule;
     }
 
     public String getH_brief() {
-        return H_brief;
+        return this.H_brief;
     }
 
     public void setH_brief(String h_brief) {
-        H_brief = h_brief;
+        this.H_brief = h_brief;
     }
 
     public float getH_score1() {
-        return H_score1;
+        return this.H_score1;
     }
 
     public void setH_score1(float h_score1) {
-        H_score1 = h_score1;
+        this.H_score1 = h_score1;
     }
 
     public float getH_score2() {
-        return H_score2;
+        return this.H_score2;
     }
 
     public void setH_score2(float h_score2) {
-        H_score2 = h_score2;
+        this.H_score2 = h_score2;
     }
 
     public float getH_score3() {
-        return H_score3;
+        return this.H_score3;
     }
 
     public void setH_score3(float h_score3) {
-        H_score3 = h_score3;
+        this.H_score3 = h_score3;
     }
 
     public float getH_score4() {
-        return H_score4;
+        return this.H_score4;
     }
 
     public void setH_score4(float h_score4) {
-        H_score4 = h_score4;
+        this.H_score4 = h_score4;
     }
 
     public String getCity() {
-        return city;
+        return this.city;
     }
 
     public void setCity(String city) {
@@ -222,7 +222,7 @@ public class Homestay {
     }
 
     public String getDistrict() {
-        return district;
+        return this.district;
     }
 
     public void setDistrict(String district) {
@@ -230,7 +230,7 @@ public class Homestay {
     }
 
     public int getPrice() {
-        return price;
+        return this.price;
     }
 
     public void setPrice(int price) {
@@ -238,7 +238,7 @@ public class Homestay {
     }
 
     public int getRenqi() {
-        return renqi;
+        return this.renqi;
     }
 
     public void setRenqi(int renqi) {
@@ -246,7 +246,7 @@ public class Homestay {
     }
 
     public String getType() {
-        return type;
+        return this.type;
     }
 
     public void setType(String type) {

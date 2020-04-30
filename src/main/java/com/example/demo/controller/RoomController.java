@@ -5,6 +5,9 @@ import com.example.demo.dao.OrderDao;
 import com.example.demo.dao.RoomDao;
 import com.example.demo.entity.Hotel;
 import com.example.demo.entity.Room;
+import com.example.demo.service.HotelService;
+import com.example.demo.service.OrderService;
+import com.example.demo.service.RoomService;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,11 +28,11 @@ import java.util.Map;
 public class RoomController {
 
     @Autowired
-    RoomDao roomDao;
+    RoomService roomService;
     @Autowired
-    HotelDao hotelDao;
+    HotelService hotelService;
     @Autowired
-    OrderDao orderDao;
+    OrderService orderService;
 
     @GetMapping(value = "/getRoomId")   //得到id并跳转页面
     public String getRoomById(HttpSession httpSession, HttpServletRequest request) throws Exception{
@@ -44,7 +47,7 @@ public class RoomController {
         System.out.println("getRoomInfoById");
         PrintWriter printWriter = response.getWriter();
         int id = (int)session.getAttribute("room_id");
-        Room room = roomDao.getRoomByRID(id);
+        Room room = roomService.getRoomByRID(id);
         String  nothing = request.getParameter("who");
         JSONObject json = JSONObject.fromObject(room);
         System.out.println(json.toString());
@@ -52,7 +55,7 @@ public class RoomController {
     }
     @RequestMapping(value = "/test")
     public  void  test(){
-       int num = orderDao.getOrderNum(1);
+       int num = orderService.getOrderNum(1);
             System.out.println(num);
     }
 }

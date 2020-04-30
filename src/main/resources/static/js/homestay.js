@@ -40,6 +40,15 @@ $('#select div').bind("click",function(){
     $('#select>div:eq('+index+')').attr('style','border-bottom:#69F 2px solid;color:#69F;');
     $('#select>div:gt('+index+')').attr('style','border-bottom:#FFF 2px solid;');
     $('#select>div:lt('+index+')').attr('style','border-bottom:#FFF 2px solid;');
+    if(index==0){
+        location.href='#room';
+    }
+    if(index==1){
+        location.href='#homestay';
+    }
+    if(index==2){
+        location.href='#comment';
+    }
 });
 
 $(window).scroll(function(){

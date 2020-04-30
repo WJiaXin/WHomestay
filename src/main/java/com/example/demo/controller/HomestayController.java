@@ -26,6 +26,7 @@ public class HomestayController {
     HomestayService homestayService;
     private Gaode gaode=new Gaode();
 
+
     @RequestMapping(value="/setHomestay")                //获取指定地点民宿信息
     public void setHomestay(HttpServletResponse response,HttpServletRequest request, @RequestBody JSONObject json){
         System.out.println("城市："+json.get("city"));
@@ -134,6 +135,7 @@ public class HomestayController {
     @RequestMapping(value="/lookHomestay")
     @ResponseBody
     public  JSONArray lookHomestay( HttpServletRequest request){
+        System.out.println("--------hid:"+Integer.parseInt(request.getSession().getAttribute("homestayid").toString()));
         Homestay homestay=homestayService.findHidHomestayS(Integer.parseInt(request.getSession().getAttribute("homestayid").toString()));
         String daterange[]=request.getSession().getAttribute("daterangeC").toString().split(" 至 ");
         for(int i=0;i<homestay.getRoom().size();i++){
@@ -156,6 +158,7 @@ public class HomestayController {
     @RequestMapping(value="/isFull")
     @ResponseBody
     public  List<Room> isFull( HttpServletRequest request,@RequestParam("daterangeC") String daterangeC){
+
         List<Room> roomList= (List<Room>) request.getSession().getAttribute("Hroom");
         System.out.println(daterangeC);
         String daterange[]=daterangeC.split(" 至 ");
@@ -313,7 +316,7 @@ public class HomestayController {
     @ResponseBody
     public List<Homestay> home(HttpServletResponse response, HttpServletRequest request) throws IOException {
         List<Homestay> homestayList=homestayService.findAllHomestay();
-        System.out.println("------------价格:"+homestayList.get(0).getH_name());
+        System.out.println("------------价格:"+homestayList.get(0).getH_owner());
         return homestayList;
     }
     @RequestMapping(value="/Rshangjia")

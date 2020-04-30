@@ -6,6 +6,9 @@ import com.example.demo.dao.RoomDao;
 import com.example.demo.entity.Hotel;
 import com.example.demo.entity.Order;
 import com.example.demo.entity.Room;
+import com.example.demo.service.HotelService;
+import com.example.demo.service.OrderService;
+import com.example.demo.service.RoomService;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -24,11 +27,11 @@ import java.util.*;
 @Controller
 public class OrderController {
     @Autowired
-    OrderDao orderDao;
+    OrderService orderService;
     @Autowired
-    RoomDao roomDao;
+    RoomService roomService;
     @Autowired
-    HotelDao hotelDao;
+    HotelService hotelService;
 
     @RequestMapping( "order_getinfo")   //获取订单房间信息
      @ResponseBody
@@ -62,7 +65,7 @@ public class OrderController {
         order.setO_room(1);
         order.setO_account(1);
         order.setState("已下单");
-        orderDao.addOrder(order);
+        orderService.addOrder(order);
         System.out.println(" userid:"+order.getO_user()+
                 " name:"+order.getO_name()+
                 " phone:"+order.getO_phone()+
@@ -82,13 +85,13 @@ public class OrderController {
         String str = (String) session.getAttribute("getOneOrderInfoId");
         int id = Integer.valueOf(str);
         System.out.println("删除："+id);
-        orderDao.deleteOrderById(id);
+        orderService.deleteOrderById(id);
         return "redirect:/html/Personal.html";
 
     }
     @GetMapping(value = "/myOrder")                //无意义
     public  String myOrder(HttpSession session){              //读取个人订单，注意个人id还需修改
-        List<Order> myorder = orderDao.myOrder(1);
+        List<Order> myorder = orderService.myOrder(1);
         List<Order> myorder1 = new ArrayList<Order>();
         List<Order> myorder2 = new ArrayList<Order>();
         List<Order> myorder3 = new ArrayList<Order>();
@@ -144,7 +147,7 @@ public class OrderController {
         if(page>1){
             star=(page-1)*5 ;
         }
-        int ordernum = orderDao.getOrderNum(1);
+        int ordernum = orderService.getOrderNum(1);
         int num=0;
         if(ordernum%5==0){
             num=ordernum/5;
@@ -152,7 +155,7 @@ public class OrderController {
             num=ordernum/5+1;
         }
         System.out.println("用户全部订单页数："+num);
-        List<Map<String, Object>> sqlresult= orderDao.getAllOrder(1,star);
+        List<Map<String, Object>> sqlresult= orderService.getAllOrder(1,star);
         List<JSONObject> allorder = getAllInfo(sqlresult);
         Map<String ,JSONObject> map = new HashMap<String, JSONObject>() ;
             for(int i = 0;i<allorder.size();i++){
@@ -177,7 +180,7 @@ public class OrderController {
         if(page>1){
             star=(page-1)*5 ;
         }
-        int ordernum = orderDao.getAfterNum(1,"已下单","已预订");
+        int ordernum = orderService.getAfterNum(1,"已下单","已预订");
         int num=0;
         if(ordernum%5==0){
             num=ordernum/5;
@@ -185,7 +188,7 @@ public class OrderController {
             num=ordernum/5+1;
         }
         System.out.println("预定的订单页数："+num);
-        List<Map<String, Object>> sqlresul = orderDao.getBookingOrder(1,"已下单","已预订",star);
+        List<Map<String, Object>> sqlresul = orderService.getBookingOrder(1,"已下单","已预订",star);
         List<JSONObject> allorder = getAllInfo(sqlresul);
         Map<String ,JSONObject> map = new HashMap<String, JSONObject>() ;
         for(int i = 0;i<allorder.size();i++){
@@ -210,7 +213,7 @@ public class OrderController {
         if(page>1){
             star=(page-1)*5;
         }
-        int ordernum = orderDao.getEndNum(1,"已完成");
+        int ordernum = orderService.getEndNum(1,"已完成");
         int num=0;
         if(ordernum%5==0){
             num=ordernum/5;
@@ -218,7 +221,7 @@ public class OrderController {
             num=ordernum/5+1;
         }
         System.out.println("已完成的订单页数："+num);
-        List<Map<String, Object>> sqlresul = orderDao.getEndOrder(1,"已完成",star);
+        List<Map<String, Object>> sqlresul = orderService.getEndOrder(1,"已完成",star);
         List<JSONObject> allorder = getAllInfo(sqlresul);
         Map<String ,JSONObject> map = new HashMap<String, JSONObject>() ;
         for(int i = 0;i<allorder.size();i++){
@@ -243,7 +246,7 @@ public class OrderController {
         if(page>1){
             star=(page-1)*5 ;
         }
-        int ordernum = orderDao.getAfterNum(1,"已取消","已退款");
+        int ordernum = orderService.getAfterNum(1,"已取消","已退款");
         int num=0;
         if(ordernum%5==0){
             num=ordernum/5;
@@ -251,7 +254,7 @@ public class OrderController {
             num=ordernum/5+1;
         }
         System.out.println("售后的订单页数："+num);
-        List<Map<String, Object>> sqlresul = orderDao.getBookingOrder(1,"已取消","已退款",star);
+        List<Map<String, Object>> sqlresul = orderService.getBookingOrder(1,"已取消","已退款",star);
         List<JSONObject> allorder = getAllInfo(sqlresul);
         Map<String ,JSONObject> map = new HashMap<String, JSONObject>() ;
         for(int i = 0;i<allorder.size();i++){
@@ -271,7 +274,7 @@ public class OrderController {
         String str = request.getParameter("cancelid");
         int id = Integer.valueOf(str);
         System.out.println("取消订单id:"+str);
-        orderDao.updateOrderState(id,"已取消");
+        orderService.updateOrderState(id,"已取消");
         return"ok";
     }
     @RequestMapping(value = "getHOrder")//得到房主全部订单
@@ -285,7 +288,7 @@ public class OrderController {
         if(page>1){
             star=(page-1)*5 ;
         }
-        int ordernum = orderDao.getAllOrderForHNum(1);
+        int ordernum = orderService.getAllOrderForHNum(1);
         int num=0;
         if(ordernum%5==0){
             num=ordernum/5;
@@ -293,7 +296,7 @@ public class OrderController {
             num=ordernum/5+1;
         }
         System.out.println("房主全部订单页数："+num);
-        List<Map<String, Object>> sqlresult= orderDao.getAllOrderForH(1,star);
+        List<Map<String, Object>> sqlresult= orderService.getAllOrderForH(1,star);
         List<JSONObject> allorder = getAllInfo(sqlresult);
         Map<String ,JSONObject> map = new HashMap<String, JSONObject>() ;
         for(int i = 0;i<allorder.size();i++){
@@ -320,7 +323,7 @@ public class OrderController {
         if(page>1){
             star=(page-1)*5;
         }
-        int ordernum = orderDao.getOneTypeOrderNum(1,state);
+        int ordernum = orderService.getOneTypeOrderNum(1,state);
         int num=0;
         if(ordernum%5==0){
             num=ordernum/5;
@@ -328,7 +331,7 @@ public class OrderController {
             num=ordernum/5+1;
         }
         System.out.println("一种的订单页数："+num);
-        List<Map<String, Object>> sqlresul = orderDao.getOneTypeOrder(1,state,star);
+        List<Map<String, Object>> sqlresul = orderService.getOneTypeOrder(1,state,star);
         List<JSONObject> allorder = getAllInfo(sqlresul);
         Map<String ,JSONObject> map = new HashMap<String, JSONObject>() ;
         for(int i = 0;i<allorder.size();i++){
@@ -347,7 +350,7 @@ public class OrderController {
         String str = request.getParameter("refuseOrderid");
         int id = Integer.valueOf(str);
         System.out.println("一种的订单id:"+str);
-        orderDao.updateOrderState(id,"已退款");
+        orderService.updateOrderState(id,"已退款");
     }
     @RequestMapping(value = "transit")   //将查看订单的id放在session中
     public String transit(HttpServletRequest request,HttpSession session){
@@ -363,9 +366,9 @@ public class OrderController {
         String str = (String) session.getAttribute("getOneOrderInfoId");
         int id = Integer.valueOf(str);
         System.out.println("得到一个订单的信息"+str1);
-        Order order = orderDao.getOneOrder(id);
-        Room room = roomDao.getRoomByRID(order.getO_room());
-        Hotel hotel = hotelDao.getHotelById(room.getR_hotel());
+        Order order = orderService.getOneOrder(id);
+        Room room = roomService.getRoomByRID(order.getO_room());
+        Hotel hotel = hotelService.getHotelById(room.getR_hotel());
         JSONObject object = new JSONObject();
         System.out.println(order.getO_name());
         object.put("o_Etime", String.valueOf(order.getO_Etime()));
@@ -391,7 +394,7 @@ public class OrderController {
         String str = request.getParameter("agreeOrderid");
         int id = Integer.valueOf(str);
         System.out.println("id:"+str);
-        orderDao.updateOrderState(id,"已预订");
+        orderService.updateOrderState(id,"已预订");
     }
 
     @RequestMapping(value = "querenOrderById")//用户订单完成
@@ -399,6 +402,6 @@ public class OrderController {
         String str = request.getParameter("querenorderid");
         int id = Integer.valueOf(str);
         System.out.println("id:"+str);
-        orderDao.updateOrderState(id,"已完成");
+        orderService.updateOrderState(id,"已完成");
     }
 }

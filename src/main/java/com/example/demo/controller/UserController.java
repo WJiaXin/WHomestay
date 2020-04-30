@@ -94,14 +94,16 @@ public class UserController {
         //获取前端由ajax传过来的值
         String user_id = request.getParameter("inputPhone");
         String user_pwd = request.getParameter("inputPassword");
+        /**
         String inputCordZ = request.getParameter("inputCord1");
         //获取验证码的值
         String text = (String) session.getAttribute("text") ;//获取验证码的值
+         **/
         int flag = userService.verification(user_id);//查看该id在user表中是否有记录。
         //判断验证码是否输入正确
         if (flag != 0) {
             user = userService.findUserById(user_id); //通过id，找到用户所有信息
-            if (!inputCordZ.equals(text) && user.getUser_pwd().equals(user_pwd)) {//判断验证码和密码是否输入正确
+            if (user.getUser_pwd().equals(user_pwd)) {//判断验证码和密码是否输入正确
                 JSONObject json = JSONObject.fromObject(user);
                 printWriter.print(json.toString());
                 request.setAttribute("userLogin", user);//密码正确，将用户信息发送带缓存。
